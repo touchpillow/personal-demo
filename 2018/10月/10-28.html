@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            background: red;
+            /* transition: all 3s ;
+             */
+             animation: ani 5s infinite alternate linear;
+        }
+        /* div:hover{
+            width: 500px;
+            height: 500px;
+            background: green;
+            transition: all 3s in;
+        } */
+        @keyframes ani{
+            from{
+                width:200px;
+                height: 200px;
+            }to{
+                width:500px;
+                height: 500px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script type="module">
+        let a= Symbol('foo');
+        let b= Symbol.for('foo');
+        let c= Symbol.for('foo');
+    console.log(c===b)
+    </script>
+     <div></div>
+
+    <script>
+        // let obj={a:1};
+        // (function(){
+        //     let value=obj.a||233;
+        //     Object.defineProperty(obj,'a',{
+        //         get(){
+        //             //do someThing
+        //             console.log(1111)
+        //             return value
+        //         },
+        //         set(newValue){
+        //             console.log(2222)
+        //             value=newValue
+        //         }
+        //     });
+        // })()
+        // obj.a
+        // obj.a=2
+        // console.log(obj.a)
+        // console.log([1,2,3].slice())
+        // let pro=new Promise(resolve=>{
+        //     resolve(1)
+        // });
+        // pro.then(data=>{
+        //     console.log(data)
+        //     // console.log(x)
+        // }).catch(error=>{
+        //     console.log(error.data)
+        // })
+        class Fun{
+            say(){
+                console.log('111')
+            }
+        }
+        class Fn extends Fun{
+            constructor(){
+                super()
+                this.name='aaa'
+            }
+        }
+        let aaa=new Fn();
+        aaa.say();
+    </script>
+</body>
+</html>

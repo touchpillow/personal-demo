@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <canvas width="500" height="300" id="canvas"></canvas>
+      <canvas width="500" height="300" id="canvas2"></canvas>
+    </div>
+    <script>
+      var canvas = document.getElementById("canvas");
+      var canvas2 = document.getElementById("canvas2");
+      var ctx = canvas.getContext("2d");
+      var ctx2 = canvas2.getContext("2d");
+      var circle = new Path2D();
+      circle.moveTo(125, 35);
+      circle.arc(100, 35, 25, 0, 2 * Math.PI);
+      var rectangle = new Path2D();
+      rectangle.moveTo(50, 50);
+      rectangle.lineTo(100, 100);
+      function draw() {
+        if (canvas.getContext) {
+          ctx.stroke(rectangle);
+          ctx.stroke(circle);
+        }
+        ctx2.stroke(rectangle);
+        ctx2.stroke(circle);
+      }
+
+      document.oncontextmenu = function(e) {
+        e.preventDefault();
+      };
+      canvas.onmousedown = function(e) {
+        console.log(ctx.isPointInStroke(circle, 35, 25));
+      };
+      draw();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // console.log(111111)
+        // window.onload=function(){
+        //     console.log(2222222)
+        // }
+        // var a=1;
+        // function foo(){
+        //     a=2;
+        //     eval('var a')
+        //     console.log(a)
+        // }
+        // foo();
+        // console.log(a)
+        // console.log(typeof debug)
+        // console.log(typeof atob)
+        // let a=[1,2,3];
+        // a[0].a=1;
+        // console.log(a)
+        let attribute = [{
+                group: '颜色',
+                params: ['红色', '黑色', '钛金', '银色']
+            },
+            {
+                group: '规格',
+                params: ['21寸', '26寸', '29寸']
+            }
+        ];
+
+        function getNewData(group) {
+            return group.map(item => {
+                return Object.assign({}, item, {
+                    params: item.params.map(val => {
+                        return {
+                            attribute: val,
+                            isActive: false
+                        }
+                    })
+                })
+            })
+        }
+        let newGroup = getNewData(attribute);
+        console.log(newGroup)
+    </script>
+</body>
+
+</html>

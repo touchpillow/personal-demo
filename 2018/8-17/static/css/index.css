@@ -1,0 +1,241 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+img {
+    display: block;
+}
+li,ul{
+    list-style: none;
+}
+input {
+    outline: none;
+}
+body{
+    margin: 0 auto;
+    overflow: hidden;
+}
+html {
+    font-size: 100px;
+    font-family: "微软雅黑";
+    font-size: 16px;
+}
+.clear:after{
+    display: block;
+    content: "";
+    clear: both;
+    visibility: hidden;
+}
+.content {
+    width: 60%;
+    float: left;
+    background: rgba(0,0,0,0.1);
+    height: 100vh;
+    overflow-y: auto;
+}
+.content .edit-button {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+    width: 160px;
+
+}
+.content .edit-button button {
+    width: 160px;
+    font-size: 30px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+
+}
+.content ul li {
+    float: left;
+    margin-bottom: 20px;
+}
+.content ul.col-1 li{
+    width:100%;
+}
+.content ul.col-2 li{
+    width:50%;
+}
+.content ul.col-3 li{
+    width:33.33%;
+}
+.content ul.col-4 li{
+    width:25%;
+}
+.content ul.col-5 li{
+    width:20%;
+}
+.content ul.col-6 li{
+    width:16.66%;
+}
+.content ul li img{
+    object-fit: contain;
+    margin: 0 auto;
+    width:100%;
+    height: 100%;
+    /* box-sizing: border-box; */
+    border: 1px solid rgba(0,0,255,0);
+}
+.content ul li img.select{
+    border: 1px solid rgba(0,0,255,0.5);
+}
+.edit {
+    width:40%;
+    float: right;
+    background: rgba(255,255,0,0.1);
+    height: 100vh;
+}
+.edit .edit-content {
+    height:200px;
+    width:100%;
+    box-sizing: border-box;
+    /* border-bottom: 1px solid #000; */
+    display: none;
+}
+.edit .edit-content .edit-content-title{
+    padding-left:30px;
+    width: 100%;
+    height: 60px;
+    font-size: 26px;
+    line-height: 60px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+.edit .edit-content .edit-content-item {
+    padding-left:30px;
+    width: 100%;
+}
+.edit .edit-content .edit-content-item ul li {
+    height: 30px;
+    width: 100%;
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    overflow: hidden;
+    vertical-align: top;      
+}
+.edit .edit-content .edit-content-item ul li div {
+    display: inline-block;
+    height: 100%;
+    width:100px;
+    font-size: 18px;
+    line-height: 30px;
+}
+.edit .edit-content .edit-content-item ul li input {
+    height: 24px;
+    font-size: 18px;
+    width:80px;
+    line-height: 24px;
+    vertical-align: top;
+}
+
+.edit .edit-image {
+    height:200px;
+    width:100%;
+    box-sizing: border-box;
+    /* border-bottom: 1px solid #000; */
+    display: none;
+}
+.edit .edit-image .edit-image-title{
+    padding-left:30px;
+    width: 100%;
+    height: 60px;
+    font-size: 26px;
+    line-height: 60px;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+.edit .edit-image .edit-image-item {
+    padding-left:30px;
+    width: 100%;
+}
+.edit .edit-image .edit-image-item ul li {
+    height: 30px;
+    width: 100%;
+    font-size: 18px;
+    line-height: 30px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    position: relative;
+    overflow: hidden;   
+}
+.edit .edit-image .edit-image-item ul li div {
+    display: inline-block;
+    height: 100%;
+    width:100px;
+    font-size: 18px;
+    line-height: 30px;
+    overflow: hidden;
+    text-align: center;
+    margin-right: 20px;
+}
+.edit .edit-image .edit-image-item ul li input {
+    height: 24px;
+    font-size: 18px;
+    width:80px;
+    line-height: 24px;
+    position: relative;
+    top:-8px;
+    left:-4px;
+}
+.edit .edit-image .edit-image-item ul li:first-child input {
+    opacity: 0;
+    top:-4px;
+    left:-1px;
+    border: none;
+    width:84px;
+}
+.edit .edit-image .edit-image-item ul li:first-child div ,
+.edit .edit-image .edit-image-item ul li:nth-child(2) div {
+    box-sizing: border-box;
+    border: 1px solid rgba(0,0,0,0.3);
+}
+.edit .edit-image .edit-image-item ul li:nth-child(2) input {
+    left:-1px;
+    width:80px;
+}
+.edit .edit-image .edit-image-item ul li s {
+    height: 28px;
+    font-size: 18px;
+    width:84px;
+    line-height: 28px;
+    position: absolute;
+    left:100px;
+    text-decoration: none;
+    top:2px;
+    left:124px;
+    box-sizing: border-box;
+    border:1px solid rgba(0,0,0,0.3);
+}
+.edit .edit-image .edit-image-item ul li span {
+    height: 30px;
+    font-size: 18px;
+    position: absolute;
+    width:20px;
+    left:110px;
+    line-height: 30px;
+}
+.edit .edit-image .edit-image-item ul li .edit-image-button button {
+    width:100%;
+    height: 100%;
+    font-size: 18px;
+    line-height: 30px;
+    width:100px;
+}
+.image-name{
+    display: none;
+    position: absolute;
+    font-size: 18px;
+    height: 30px;
+    line-height: 30px;
+    color: #000;
+    background: transparent;
+}
+.image-name.active{
+    display: inline-block;
+}
+

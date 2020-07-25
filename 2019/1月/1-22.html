@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function myPromise(callBack) {
+        "use strict";
+        var that = this;
+        var promiseArg; //保存每次回调的参数
+        var status; //保存状态数据，用于冻结并抛出异常
+        var account = 0; //记录更改状态的次数
+        that._status = undefined; //保存promise实例的状态
+        that.handleEventArray = []; //保存事件列表
+        that.finallyEvent = undefined; //finally的回调
+        that.promiseArg = undefined;
+        //成功、失败回调，更改状态，传入参数
+        function reslove(arg) {
+          that._status = true;
+          that.promiseArg = promiseArg = arg;
+          account++;
+        }
+        function reject(arg) {
+          that._status = false;
+          that.promiseArg = promiseArg = arg;
+          account++;
+        }
+        //状态只能更改一次
+        Object.defineProperty(that, "_status", {
+          set: function(val) {
+            if (account >= 1) {
+              throw new Error("status can only be changed once");
+            }
+            status = val;
+          },
+          get: function() {
+            return status;
+          }
+        });
+        //依次执行回调事件
+        function excuteEvent(status) {
+          if (typeof status === "boolean") {
+            excuteEventArray(that.handleEventArray, status);
+          }
+        }
+        //根据当前promise状态决定如何执行回调
+        function excuteEventArray(event, status) {
+          debugger;
+          if (event.length) {
+            var currentEvent = event.shift()[+!status];
+            //如果没有捕获异常回调，则
+            if (typeof currentEvent === "function") {
+              try {
+                that.promiseArg = promiseArg = currentEvent(promiseArg);
+                status = true;
+              } catch (e) {
+                that.promiseArg = promiseArg = e.message;
+                status = false;
+              }
+            }
+
+            //如果返回的是promise实例，根据实例状态执行对应的回调
+            if (promiseArg instanceof myPromise) {
+              status = promiseArg._status;
+              that.promiseArg = promiseArg.promiseArg;
+              promiseArg = that.promiseArg;
+            }
+            excuteEventArray(event, status);
+          } else {
+            //执行finally回调
+            if (that.finallyEvent) {
+              that.finallyEvent();
+            }
+            //抛出未捕获的异常
+            if (!status) {
+              throw new Error("Uncaught (in myPromise)  ");
+            }
+          }
+        }
+        callBack(reslove, reject);
+        //用setTimeout 0 来模仿es6中的then异步
+        setTimeout(excuteEvent.bind(that, that._status), 0);
+      }
+      function checkArgument(arg) {
+        for (var i = 0; i < arg.length; i++) {
+          if (typeof arg[i] !== "function" && arg[i] != null) {
+            throw new Error(arg[i] + " must be an function");
+          }
+        }
+        return true;
+      }
+      //快速创建promise实例的方法
+      myPromise.resolve = function(e) {
+        return new myPromise(function(res, rej) {
+          res(e);
+        });
+      };
+      //暂时还存在一些问题
+      myPromise.reject = function(e) {
+        return new myPromise(function(res, rej) {
+          rej(e);
+        });
+      };
+      myPromise.prototype = {
+        then: function(res, rej) {
+          var callback = function(r) {
+            return r;
+          };
+          var that = this;
+          if (checkArgument(arguments)) {
+            //如果对应的处理事件是null、undefined或者没有传入，则将参数传递到下一轮回调中
+            var fullfiledEvent = res == null ? callback : res;
+            var rejectedEvent = rej;
+            that.handleEventArray.push([fullfiledEvent, rejectedEvent]);
+            return that;
+          }
+        },
+        catch: function(event) {
+          var callback = function(r) {
+            return r;
+          };
+          if (checkArgument(arguments)) {
+            //如果对应的处理事件是null、undefined或者没有传入，则将参数传递到下一轮回调中
+            this.handleEventArray.push([null, event]);
+          }
+          return this;
+        },
+        finally: function(event) {
+          var callback = function(r) {
+            return r;
+          };
+          if (checkArgument(arguments)) {
+            //如果对应的处理事件是null、undefined或者没有传入，则将参数传递到下一轮回调中
+            this.finallyEvent = event || event;
+          }
+          return this;
+        }
+      };
+      let a = new myPromise((res, rej) => {
+        rej(123);
+      });
+      let b = a
+        .then(r => {
+          console.log(r);
+          // return myPromise.resolve("aaa");
+        })
+        .catch(null)
+        .finally(() => {
+          console.log("finally");
+        })
+        .then(r => {
+          console.log(r);
+        });
+      console.log(1);
+      b.then(r => {
+        console.log(4);
+      });
+      // myPromise.reject("222").then(r => {
+      //   console.log(r);
+      // });
+    </script>
+  </body>
+</html>

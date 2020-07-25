@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //   function print(n) {
+    //     setTimeout(() => {
+    //       if (!this.arr) {
+    //         this.arr = new Array(100);
+    //         this.arr.fill(void 0);
+    //       }
+    //       this.arr[n] = () => {
+    //         new Promise(res => {
+    //           console.log(n);
+    //           res();
+    //         });
+    //       };
+    //       if (this.arr.every(item => !!item)) {
+    //         debugger;
+    //         this.arr.reduce((val, item) => {
+    //           return val.then(item);
+    //         }, Promise.resolve()); //0-99
+    //         // this.arr.reduceRight((val, item) => {
+    //         //   return val.then(item);
+    //         // }, Promise.resolve()); //99-0
+    //       }
+    //     }, Math.floor(Math.random() * 1000));
+    //   }
+    //   for (var i = 0; i < 100; i++) {
+    //     print(i);
+    //   }
+    //   function print(n) {
+    //     setTimeout(
+    //       (() => {
+    //         console.log(n);
+    //         return () => {};
+    //       }).apply(null),
+    //       Math.floor(Math.random() * 1000)
+    //     );
+    //   }
+    //   for (var i = 0; i < 100; i++) {
+    //     print(i);
+    //   }
+    //   function findSum(target, arr) {
+    //     for (let i = 0; i <= arr.length; i++) {
+    //       let index = arr.findIndex(item => item == target - arr[i]);
+    //       if (index >= 0) {
+    //         return [i, index];
+    //       }
+    //     }
+    //   }
+    //   let a = [1, 2, 4, 8, 9];
+    //   console.log(findSum(12, a));
+    // function singArr(arr) {
+    //   return arr.filter((item, index) => index === arr.indexOf(item));
+    // }
+
+    // function singArr2(arr) {
+    //   return [...new Set(arr)];
+    // }
+
+    // function singArr3(arr) {
+    //   let res = {};
+    //   arr.forEach(item => {
+    //     res[item] = item;
+    //   });
+    //   return Object.values(res);
+    // }
+    // let a = /(\d+)(?=(\d{3})+$)/g; //千分加,
+    //先行断言、先行否定断言
+    //先行断言  x(?=y)只匹配y前面的x（不会记住y）
+    let a = /(\d+)(?=\%)/g;
+    let str = "d234dfg4%df34%54";
+    console.log(str.match(a))
+
+    //先行否定断言 x(?!y) 只匹配不在y前面的x(不会记住y)
+    let b = /\d+(?!\%)/g;
+    console.log(str.match(b))
+
+    //后行断言 (?<=y)x  只匹配在y后面的x（不会记住y）
+    let c = /(?<=\%)\d+/g;
+    console.log(str.match(c))
+
+    //后行否定断言 (?!y)x 只匹配不在y后面的x（不会记住y）
+    let d = /(?<!\%)\d+/g;
+    console.log(str.match(d))
+  </script>
+</body>
+
+</html>

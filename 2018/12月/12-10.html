@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span>222222222</span>
+        <button id="one">点我存值</button>
+        <a href="./12-11.html">返回</a>
+    </div>
+</body>
+<script>
+    document.querySelector('#one').addEventListener('click',function(){
+        debugger
+        if(!sessionStorage.getItem('flag')) return
+            alert('11111111')
+        // sessionStorage.setItem('flag',1)
+    })
+</script>
+</html>

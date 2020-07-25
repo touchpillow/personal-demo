@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+    </script>
+</head>
+
+<body>
+    <div class="first">
+        1111
+    </div>
+    <div class="copy">复制</div>
+    <div class="second">
+        2222
+    </div>
+    <div class="copy">复制</div>
+    <input type="text" id="ccc">
+    <script>
+        window.onload = function () {
+
+            [...(document.querySelectorAll('.copy'))].forEach(item => {
+
+                item.addEventListener('click', function copyText(e) {
+                    let input = document.createElement('input');
+                    document.body.appendChild(input);
+                    input.style.cssText = "position:absolute";
+                    debugger
+                    input.value = e.target.previousElementSibling.innerHTML;
+                    input.select();
+                    
+                    document.execCommand('copy');
+                })
+            });
+            document.querySelector('#ccc').onpaste=function(e){
+                debugger
+                let resT=window.getSelection();
+                // let res=e.clipboardData.getData('Text');
+                
+            }
+        }
+    </script>
+</body>
+
+</html>

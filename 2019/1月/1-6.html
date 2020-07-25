@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   let a = Symbol.for("aaa");
+      //   let b = Symbol.for("aaa");
+      let obj = {
+        valueOf() {
+          return true;
+        },
+        toString() {
+          return 0;
+        }
+      };
+      let obj1 = {
+        valueOf() {
+          return a;
+        },
+        toString() {
+          return "a";
+        }
+      };
+      let obj2 = {
+        valueOf() {
+          return "0";
+        },
+        toString() {
+          return "a";
+        }
+      };
+      console.log(1 + obj);
+      //   console.log(obj == "aaa", "对象执行toprimitive操作，类型是number"); //
+      //   console.log(obj1 == b, "对象执行toprimitive操作，类型是number"); //
+      //   console.log(obj2 == false,"boolean先转换为数字，对象执行toprimitive操作，类型是number"); //
+      //   let currentDate = new Date();
+      //   let a = currentDate.valueOf();
+      //   let b = currentDate.toString();
+      //   console.log(a == currentDate,"//如果为true则Date对象toprimitive默认类型是number");
+      //   console.log(b == currentDate,"//如果为true则Date对象toprimitive默认类型是string");
+      // let a=new Boolean(2);
+      // let b=new Boolean(2);
+      // a.valueOf=function(){
+      //     return 2
+      // }
+      // // Boolean.prototype.valueOf=function(){
+      // //     return 2
+      // // }
+      // console.log(a==2)
+      // console.log(b==2)
+      // let a=Symbol('aaa');
+      // let b=Symbol.for('aaa');
+      // let c=Symbol.for('aaa');
+      // console.log(a==b)
+      // console.log(a==c)
+      // console.log(b==b)
+      // console.log(0 == "0");
+      // console.log(0 == "");
+      // console.log("0" == "");
+    </script>
+  </body>
+</html>

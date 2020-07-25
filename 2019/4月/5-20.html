@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let tree = [
+        { id: 1, child: null },
+        { id: 2, child: [{ id: 1, child: null }, { id: 0, child: null }] },
+        {
+          id: 3,
+          child: [
+            { id: 2, child: [{ id: 1, child: null }, { id: 0, child: null }] },
+            { id: 5, child: null },
+            { id: 6, child: null }
+          ]
+        },
+        { id: 4, child: null },
+        { id: 5, child: null }
+      ];
+      function eachNode(item, arr, type) {
+        return arr.every((item2, index) => {
+          return !isFather(item, item2, type);
+        });
+      }
+      function isFather(item, item2, type) {
+        if (item.id === item2.id && !type) {
+          return true;
+        } else if (item2.child) {
+          return !eachNode(item, item2.child);
+        } else {
+          return false;
+        }
+      }
+      let result = tree.filter((item, index, arr) => {
+        return eachNode(item, arr, true);
+      });
+      console.log(result);
+    </script>
+  </body>
+</html>

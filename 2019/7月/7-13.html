@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    //   function isObject(a) {
+    //     return typeof a === "object" && a !== null;
+    //   }
+    //   function deepClone(data) {
+    //     let res = {};
+    //     if (isObject(a)) {
+    //       for (let key in data) {
+    //         if (data.hasOwnProperty(key)) {
+    //           res[key] = deepClone(data[key]);
+    //         }
+    //       }
+    //     } else {
+    //       return data;
+    //     }
+    //     return res;
+    //   }
+    //   let a = {
+    //     a: [1, 2, 3],
+    //     b: { c: { a: 1, b: 2, c: { c: 1 } }, d: [3, 2, 1] }
+    //   };
+    //   console.log(deepClone(a));
+    // class Super {
+    //   foo() {
+    //     console.log(1);
+    //   }
+    // }
+    // class Sub extends Super {}
+
+    // const sub = new Sub();
+    // sub.foo();
+
+    // console.log(Sub.prototype);
+    // console.log(Sub.prototype.__proto__ === Super.prototype);
+    //   console.log(Sub.__proto__.constructor);
+    function foo(a) {
+      debugger
+      if (`${a}`.length == 1) {
+        return a
+      } else {
+        return `${foo(`${a}`.replace(/^\d(?=\d*$)/,""))}${`${a}`[0]}`
+      }
+    }
+    console.log(foo(12134))
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <span>11111111111</span>
+        <a href="./12-10.html">点我跳转</a>
+        <button id="one">点我存值</button>
+        <button id="two">点我弹框</button>
+    </div>
+    <script>
+        let funObj={
+            clickfun(){
+                if(!sessionStorage.getItem('flag')) return
+            alert('11111111')
+            funObj.fn();
+            },
+            fn(){
+                alert('2222')
+            }
+        }
+        document.querySelector('#two').addEventListener('click',funObj.clickfun)
+        document.querySelector('#one').addEventListener('click',function(){
+            sessionStorage.setItem('flag',1)
+        })
+    </script>
+</body>
+</html>

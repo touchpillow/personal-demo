@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>upload</title>
+    <link rel="stylesheet" href="./static/css/index.css">
+</head>
+
+<body class="clear">
+    <div class="content clear">
+        <div class="edit-button">
+            <button id="addImage">新增图片</button>
+        </div>
+        <div>
+            <ul class="image-list clear col-3">
+
+            </ul>
+        </div>
+
+    </div>
+    <div class="edit">
+        <div class="edit-content">
+            <div class="edit-content-title">内容区</div>
+            <div class="edit-content-item">
+                <ul class="clear">
+                    <li class="clear">
+                        <div class="edit-style">排列样式</div>
+                        <input id="listStyle" type="number" max="6" min="1" value="3"><div>列</div>
+                    </li>
+                    <li class="clear">
+                        <div class="edit-image-width">图片宽度</div>
+                        <input id="imageWidth" type="number" min="120" max="800" value="300"><div>px</div>
+                    </li>
+                    <li class="clear">
+                        <div class="edit-image-height">图片高度</div>
+                        <input id="imageHeight" type="number" min="90" max="600" value="200"><div>px</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="edit-image">
+            <div class="edit-image-title">图片区</div>
+            <div class="edit-image-item">
+                <ul>
+                    <li>
+                        <div id="imageName" class="edit-image-name">图片名称</div>
+                        <s>上传图片</s>
+                        <input id="imageFile" type="file" accept="image/png,image/jpg,image/JPEG,image/gif" placeholder="请选择图片">
+
+                    </li>
+                    <li>
+                        <div class="edit-image-background">背景颜色</div>
+                        <input id="imageBgc" type="text" value="ffffff">
+                        <span>#</span>
+                    </li>
+                    <li>
+                        <div class="edit-image-button">
+                            <button>确定上传</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="image-name"></div>
+</body>
+<script src="./static/js/index.js"></script>
+<!-- cxv -->
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title></title>
+    <style>
+      #cavas {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="cavas" height="232">
+      您的浏览器不支持canvas标签！请尝试使用<a href="#">google浏览器</a>
+    </canvas>
+  </body>
+  <script>
+    /**
+     * 绘制进度圆环
+     */
+    var canvas = document.getElementById("cavas"),
+      ctx = canvas.getContext("2d"),
+      circleValue = {
+        x: 150,
+        y: 120,
+        radius: 86,
+        startAngle: 0,
+        endAngle: 2 * Math.PI,
+        anticlockwise: false
+      };
+
+    drowArc(ctx, 0.8);
+    function drowArc(ctx, percent) {
+      //打底 圆环 绘制
+      ctx.lineWidth = 11;
+      ctx.beginPath();
+      var grd = ctx.createRadialGradient(
+        circleValue.x,
+        circleValue.y,
+        72,
+        circleValue.x,
+        circleValue.y,
+        93
+      );
+      grd.addColorStop(0, "#e9eae9");
+      grd.addColorStop("0.8", "#fefefe");
+      grd.addColorStop("1", "#e9eae9");
+      ctx.strokeStyle = grd;
+      ctx.arc(
+        circleValue.x,
+        circleValue.y,
+        circleValue.radius,
+        circleValue.startAngle,
+        circleValue.endAngle,
+        circleValue.anticlockwise
+      );
+      ctx.closePath();
+      ctx.stroke();
+
+      //展示进度圆环绘制
+      ctx.lineWidth = 11;
+      ctx.beginPath();
+      var linear = ctx.createLinearGradient(100, 100, 200, 100);
+      linear.addColorStop(0, "#ffc26b");
+      linear.addColorStop(0.5, "#ff9a5f");
+      linear.addColorStop(1, "#ff8157");
+      ctx.strokeStyle = linear;
+      ctx.arc(
+        circleValue.x,
+        circleValue.y,
+        circleValue.radius,
+        circleValue.startAngle,
+        circleValue.endAngle * percent,
+        circleValue.anticlockwise
+      );
+      ctx.stroke();
+
+      //进度起点圆角
+      ctx.beginPath();
+      ctx.fillStyle = "#ff8157";
+      ctx.arc(
+        circleValue.x + circleValue.radius,
+        circleValue.y - 1,
+        5.5,
+        circleValue.startAngle,
+        circleValue.endAngle,
+        circleValue.anticlockwise
+      );
+      ctx.closePath();
+      ctx.fill();
+
+      //终点圆角
+      ctx.lineWidth = 3.5;
+      ctx.beginPath();
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+      ctx.shadowBlur = 6;
+      ctx.shadowColor = "#ff7854";
+      ctx.fillStyle = "#ff7854";
+      ctx.strokeStyle = "#fff";
+      //计算终点的坐标
+      var getX =
+          circleValue.x + circleValue.radius * Math.cos(2 * percent * Math.PI),
+        getY =
+          circleValue.y + circleValue.radius * Math.sin(2 * percent * Math.PI);
+      ctx.arc(
+        getX,
+        getY,
+        9,
+        circleValue.startAngle,
+        circleValue.endAngle,
+        circleValue.anticlockwise
+      );
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    }
+  </script>
+</html>

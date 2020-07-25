@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let data = [];
+      for (let i = 0; i < 3000; i++) {
+        let a = random(40, 0);
+        let b = random(1000, 1);
+        let c = random(1000, 1);
+        data.push({
+          dtsNodeId: a[0],
+          srcNodeId: a[1],
+          aPortSpeedRate: b[0],
+          aPortTraffic: b[1],
+          zPortSpeedRate: c[0],
+          zPortTraffic: c[1]
+        });
+      }
+      function random(range, type) {
+        let data = [];
+        let item = ((Math.random() * range) | 0) + range + (type ? "" : 0);
+        let item2 = ((Math.random() * range) | 0) + range + (type ? "" : 0);
+        debugger;
+        data.push(item);
+        data.push(item2);
+        return data;
+      }
+      console.log(data);
+      function handleLinkData(linkdata) {
+        let cache = {
+          data: [{}],
+          adress: {}
+        };
+        linkdata.forEach(item => {
+          let id1 = `${item.dtsNodeId}-${item.srcNodeId}`;
+          let id2 = id1.replace(/(\d*)-(\d*)/, `$2-$1`);
+          if (cache.adress[id1] || cache.adress[id2]) {
+            let index = cache.adress[id1] || cache.adress[id2];
+            let currdata = cache.data[index];
+            currdata.children.push(item);
+            let trafficDataA = portCompare(currdata, item, "a");
+            let trafficDataZ = portCompare(currdata, item, "z");
+            if (trafficDataA) {
+              currdata.aPortSpeedRate = item.aPortSpeedRate;
+              currdata.aPortTraffic = item.aPortTraffic;
+            }
+            if (trafficDataZ) {
+              currdata.zPortSpeedRate = item.zPortSpeedRate;
+              currdata.zPortTraffic = item.zPortTraffic;
+            }
+          } else {
+            let temp = JSON.parse(JSON.stringify(item));
+            cache.adress[id1] = cache.data.length;
+            cache.data.push(Object.assign({}, item, { children: [temp] }));
+          }
+        });
+        return cache;
+      }
+      function portCompare(item1, item2, type) {
+        let val1 = calc(item1, type);
+        let val2 = calc(item2, type);
+        return val1 < val2;
+      }
+      function calc(item, type) {
+        if (
+          item[`${type}PortSpeedRate`] === "unknown" ||
+          item[`${type}PortTraffic`] === "unknown"
+        ) {
+          return -1;
+        } else {
+          return (
+            (+item[`${type}PortTraffic`] * 100) / +item[`${type}PortSpeedRate`]
+          );
+        }
+      }
+      console.log(handleLinkData(data));
+    </script>
+  </body>
+</html>

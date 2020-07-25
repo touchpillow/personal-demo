@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // let a = new Promise((res, rej) => {
+      //   rej();
+      // });
+      // a.then(reas=>{
+      //     xxx
+      // }).catch(res=>{
+      //     console.log(res.message)
+      //     return 123
+      // }).then(res=>{
+      //     console.log(res)
+      // }).finally(res=>{
+      //     console.log(111111)
+      // }).then(res=>{
+      //     console.log('after')
+      // }).finally(res=>{
+      //     console.log(22222)
+      // })
+      // let b = new Promise((res, rej) => {
+      //     rej(222)
+      // });
+      // b.catch(res=>{
+      //     console.log(res)
+      //     console.log('error b')
+      // })
+      // Promise.all([a,b]).then(res=>{
+      //     console.log(res)
+      // }).catch(res=>{
+      //     console.log(res)
+      //     console.log('error all')
+      // })
+      // let obj={
+      //     then(){
+      //         throw new Error()
+      //     }
+      // }
+      // let a=Promise.resolve(obj);
+      // a.then(r=>{console.log(111)}).then(r=>{console.log(222)},r=>{console.log(333)}).catch(r=>{console.log(444)})
+      // if (!Promise.first) {
+      //     Promise.first = function (argu) {
+      //       return  argu[0].then(res => {
+      //             return Promise.resolve(res);
+      //         }, rej => {
+      //             return Promise.reject(rej);
+      //         })
+      //     }
+      // }
+      //  Promise.first([a, b]).then(res=>{
+      //      debugger
+      //  }).catch(res=>{
+      //      debugger
+      //  })\
+      // Promise.reject(a).then(e=>{console.log('success')},e=>{
+      //     console.log('error')
+      // }).catch(r=>{
+      //     debugger
+      // })
+      a.then(res => {}).catch(e => {
+        console.log(e);
+      });
+      a.then(res => {}).catch(e => {
+        console.log(e);
+      });
+    </script>
+  </body>
+</html>

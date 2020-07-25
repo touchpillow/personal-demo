@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let a = [1, 2, 3, 4, 5];
+      let res = [];
+      function each(res, data, val) {
+        if (data.length === 1) {
+          res.push(val + data[0]);
+        }
+        data.forEach(item => {
+          each(res, data.filter(item2 => item2 !== item), val + item);
+        });
+      }
+      //   each(res, a, "");
+      //   console.log(res);
+      function eachPlus(res, data, initVal, temp) {
+        debugger;
+        if (data.length === 1) {
+          res.push(initVal + data[0]);
+          return temp;
+        }
+        return data.reduce((val, item) => {
+          return eachPlus(
+            res,
+            data.filter(item2 => item2 !== item),
+            val + item,
+            temp + item
+          );
+        }, temp + initVal);
+      }
+      eachPlus(res, a, "", "");
+      console.log(res);
+    </script>
+  </body>
+</html>

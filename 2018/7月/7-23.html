@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>interator接口以及for...of遍历</title>
+</head>
+<body>
+    <div>
+        
+    </div>
+    <script>
+        //interator接口
+        //interator是一种接口，为各种不同的数据结构提供一种同意的访问机制。任何数据，只要部署了interator接口，都可以完成遍历操作
+
+        //作用：1、为各种数据结构，提供一个统一的、简便的访问接口；2、使得数据结构的成员能够按照某种次序排列；
+        //3、es6创造了一种新的遍历命令:for...of循环,es6主要供for...of消费
+        //interator的遍历过程：
+        //(1)创建一个指针对象，指向当前数据结构的起始位置。也就是说，遍历器对象本质是一个指针对象；
+        //(2)第一次调用指针对象的next方法，可以将指针对象的指针指向数据结构的第一个成员
+        //(3)第二次调用指针对象的next方法，可以将指针对象指向数据结构的第二个成员
+        //(4)不断调用指针对象的next方法，直到它指向数据结构的结束位置
+
+        //每一次调用next方法，都会返回数据结构的当前成员的信息。具体来说，就是返回一个包含value和done两个属性的对象
+
+        //默认的Interator接口部署在数据结构的Symbol.interator上。也就是说，一个数据结构只要具有了Symbol.interator属性，就可认为是可遍历的。
+        // let date=new Date();
+        // let datashiqu=date.getTimezoneOffset();//时区
+        // let formatTime=date-datashiqu*60*1000;//以分钟计
+        // console.log(`'北京时间'${date},此时标准时间是'${new Date(formatTime)}`)
+        // function foo(){
+        //     bar:function bar(){
+        //         console.log(111)
+        //     }
+        //     bar(); 7\ 
+            // console.log(this.bar)
+        // }
+        // let a=foo();
+        
+        // console.log(window.bar)
+        // function doSomething(){
+        //     console.log(11111)
+        // }
+        // setInterval(doSomething,1000);
+    </script>
+</body>
+</html>

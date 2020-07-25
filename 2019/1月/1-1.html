@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function format(num, parser) {
+        // if (typeof num !== "number") {
+        //   alert("第一个参数必须是数字");
+        //   return;
+        // }
+        // if (typeof parser !== "number") {
+        //       alert("第二个参数必须是数字");
+        //       return;
+        //   }
+        if (!Number.isInteger(num) || !Number.isInteger(parser)) {
+          alert("请传入整数参数");
+          return;
+        }
+        let fixNumber = num,
+          parseNumber = parser;
+        let numberArray = [];
+        while (fixNumber) {
+          numberArray.push(fixNumber % parser);
+          fixNumber = Math.floor(fixNumber / parser);
+        }
+        return numberArray.reverse().join("");
+      }
+      console.log(format(100, 2));
+      console.log(format(100, 8));
+    </script>
+  </body>
+</html>

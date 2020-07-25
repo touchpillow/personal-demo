@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function CodingMan(name) {
+        var obj = {
+          sleep(time) {
+            this.eventArray.push(this.addEvent(time, `Wake up after ${time}`));
+            return this;
+          },
+          eat(food) {
+            this.eventArray.push(this.addEvent(0, `Eat ${food}~`));
+            return this;
+          },
+          sleepFirst(time) {
+            this.eventArray.unshift(
+              0,
+              this.addEvent(time, `Wake up after ${time}`)
+            );
+            return this;
+          },
+          addEvent(time, msg) {
+            return () =>
+              new Promise(res => {
+                setTimeout(() => {
+                  console.log(msg);
+                  res();
+                }, time * 1000);
+              });
+          },
+          doEvent() {
+            this.eventArray.reduce((val, item) => {
+              return val.then(item);
+            }, Promise.resolve());
+          },
+          eventArray: []
+        };
+        obj.eventArray.push(obj.addEvent(0, `Hi! This is ${name}!`));
+        setTimeout(() => {
+          obj.doEvent();
+        }, 0);
+        return obj;
+      }
+
+      CodingMan("Peter")
+        .sleepFirst(5)
+        .eat("supper");
+
+      // 第四个不知道怎么写了
+      obj.sleepFirst = time => {
+        let timeNew = time * 1000;
+        setTimeout(() => {
+          console.log("Wake up after");
+          window.time = timeNew;
+        }, timeNew);
+        return obj;
+      };
+
+      // CodingMan("Peter").sleepFirst(5).eat('supper')
+    </script>
+  </body>
+</html>

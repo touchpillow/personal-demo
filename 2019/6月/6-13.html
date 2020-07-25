@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      class MyData {
+        constructor(data) {
+          this.sourceData = data;
+          this.tree = {};
+          this.getTree(this.sourceData, this.tree);
+        }
+        //初始化的时候生成tree
+        getTree(data, currentTree) {
+          currentTree.length = data.length;
+          data.forEach((item, index) => {
+            if (item instanceof Array) {
+              currentTree[index] = {
+                type: "array",
+                value: {},
+                index
+              };
+              this.getTree(item, currentTree[index].value);
+            } else {
+              currentTree[index] = {
+                type: "other",
+                value: item,
+                index
+              };
+            }
+          });
+        }
+        //这是优化之后的逻辑
+        getArray(type) {
+          let res = [];
+          this.getArr(res, this.tree, type);
+          return res;
+        }
+        //根据tree生成结果
+        getArr(res, tree, type) {
+          let param = {
+            single: 1,
+            multiple: 2
+          };
+          if (!param[type]) {
+            alert("请传入正确的参数");
+            return res;
+          }
+          for (let i = 0; i < tree.length; i++) {
+            if (tree[i].type === "other") {
+              res.push(tree[i].value);
+            } else {
+              if (param[type] === 1) {
+                this.getArr(res, tree[i].value, type);
+              } else {
+                res.push([]);
+                this.getArr(res[i], tree[i].value, type);
+              }
+            }
+          }
+        }
+
+        //下面的是原始的逻辑
+        //根据tree生成多维数组
+        getMultiDimensionalArray() {
+          let res = [];
+          this.getMDA(res, this.tree);
+          return res;
+        }
+        //根据tree生成多维数组
+        getMDA(res, tree) {
+          for (let i = 0; i < tree.length; i++) {
+            if (tree[i].type === "other") {
+              res.push(tree[i].value);
+            } else {
+              res.push([]);
+              this.getMDA(res[i], tree[i].value);
+            }
+          }
+        }
+        //根据tree生成一维数组
+        getOneDimensionalArray() {
+          let res = [];
+          this.getODA(res, this.tree);
+          return res;
+        }
+        //根据tree生成一维数组
+        getODA(res, tree) {
+          for (let i = 0; i < tree.length; i++) {
+            if (tree[i].type === "other") {
+              res.push(tree[i].value);
+            } else {
+              this.getODA(res, tree[i].value);
+            }
+          }
+        }
+      }
+      let data = [1, 2, 3, [4, 5, [6]]];
+      let a = new MyData(data);
+      console.log(a.getOneDimensionalArray("single"), "一维数组");
+      console.log(a.getMultiDimensionalArray("single"), "多维数组");
+      console.log(a.getArray("single"), "一维数组");
+      console.log(a.getArray("multiple"), "多维数组");
+    </script>
+  </body>
+</html>

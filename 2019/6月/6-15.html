@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function CodingMan(name) {
+        var obj = {
+          fnArray: ["push", "unshift"],
+          sleep(time) {
+            this.addEv(0, time, `Wake up after ${time}`);
+            return this;
+          },
+          eat(food) {
+            this.addEv(0, 0, `Eat ${food}~`);
+            return this;
+          },
+          sleepFirst(time) {
+            this.addEv(1, time, `Wake up after ${time}`);
+            return this;
+          },
+          addEv(type, time, msg) {
+            this.eventArray[this.fnArray[type]](this.addEvent(time, msg));
+          },
+          addEvent(time, msg) {
+            return () =>
+              new Promise(res => {
+                setTimeout(() => {
+                  console.log(msg);
+                  res();
+                }, time * 1000);
+              });
+          },
+          doEvent() {
+            obj.eventArray.reduce(
+              (val, item) => val.then(item),
+              Promise.resolve()
+            );
+          },
+          init() {
+            this.addEv(0, 0, `Hi! This is ${name}!`);
+          },
+          eventArray: []
+        };
+        obj.init();
+        Promise.resolve().then(obj.doEvent);
+        return obj;
+      }
+
+      CodingMan("Peter")
+        .sleepFirst(5)
+        .eat("supper");
+
+      // 第四个不知道怎么写了
+    </script>
+  </body>
+</html>

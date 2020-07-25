@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 'use strict'
+        function foo(){
+            console.log(111)
+        }
+        let obj={
+            a:2,
+            b:foo
+        },obj1={
+            c:3
+        };
+        // Object.defineProperty(obj,Symbol.iterator,{
+        //     get:function(){
+                
+                
+        //         return function(){
+        //             let o=this,index=0,keys=Object.keys(o);
+        //             return {
+        //                 next:function(){
+        //                 return {
+        //                     value:o[keys[index++]],
+        //                     done:index>keys.length
+        //                 }
+        //             }
+        //             }
+        //         }
+                    
+        //     }
+        // })
+        // let iterator=obj[Symbol.iterator]();
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // console.log(iterator.next());
+        // for (let val of obj){
+        //     console.log(val)
+        // }
+        // Object.preventExtensions(obj);
+        // console.log(Reflect.deleteProperty(obj,'a'));
+        // obj.b.c=1;
+        // console.log(obj)
+        // console.log(obj.b)
+        // console.log(obj.b.c)
+        // console.log(foo)
+        // console.log(foo.c)
+        obj.__proto__=obj1;
+        Object.defineProperty(obj,'c',{
+            writable:false
+        })
+        obj.c=1;
+        console.log(obj)
+        console.log(obj.c)
+        console.log(obj1)
+        // for(let key in obj){
+        //     console.log(key)
+        // }
+        // console.log('c' in obj)
+        // console.log(Reflect.has(obj,'c'))
+    </script>
+</body>
+</html>

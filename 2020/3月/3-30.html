@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <style>
+    img {
+      display: block;
+      width: 50%;
+    }
+  </style>
+  <body>
+    <div>
+      <img id="img1" src="./1.jpg" alt="" />
+      <img id="img2" src="./2.jpg" alt="" />
+      <span id="f11"></span>
+    </div>
+    <script>
+      window.onload = function() {
+        console.log(0);
+        console.log(c.offsetTop);
+      };
+      const a = document.querySelector("#img1");
+      const b = document.querySelector("#img2");
+      const c = document.querySelector("#f11");
+      a.onload = function() {
+        console.log(1);
+        console.log(c.offsetTop);
+      };
+      b.onload = function() {
+        console.log(2);
+        console.log(c.offsetTop);
+      };
+    </script>
+  </body>
+</html>

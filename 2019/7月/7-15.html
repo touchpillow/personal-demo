@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let a = "https://www.xx.cn/api?keyword=&level1=&local_batch_id=&elective=&local_province_id=33";
+        // let b = "https://www.xx.cn/api?keyword=&level1=&local_batch_id=&elective=800&local_province_id=33";
+        // let c = "https://www.xx.cn/api?keyword=&level1=&local_batch_id=&elective=800,700&local_province_id=33";
+
+        // function find(str, key, a1) {
+        //     let reg = new RegExp(`(?<=${key}=)(\\d+(${a1}\\d+)*)`);
+        //     // let reg = /(?<=elective=)(\d+(,\d+)*)/;
+        //     debugger;
+        //     let res = str.match(reg);
+        //     return res ? res[0].split(",") : []
+        // }
+        // console.log(find(a, "elective", ","));
+        // console.log(find(b, "elective", ","));
+        // console.log(find(c, "elective", ","));
+        let a = Symbol.for("aaa");
+        let obj = {
+            valueOf() {
+                return a
+            },
+            toString() {
+                return a
+            },
+        }
+        console.log(obj == a)
+        console.log(obj + "1")
+    </script>
+</body>
+
+</html>

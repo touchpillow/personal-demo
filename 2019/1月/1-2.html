@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //单向链表
+      //   function LinkedList() {
+      //     function Node(element) {
+      //       this.element = element;
+      //       this.next = null;
+      //     }
+      //     let length = 0,
+      //       head = null;
+      //     this.append = function(element) {
+      //       let currentNode = new Node(element);
+      //       if (head === null) {
+      //         head = currentNode;
+      //       } else {
+      //         let lastNode = head;
+      //         while (lastNode.next !== null) {
+      //           lastNode = lastNode.next;
+      //         }
+      //         lastNode.next = currentNode;
+      //       }
+      //       length++;
+      //       return true;
+      //     };
+      //     this.insert = function(element, position) {
+      //       let currentNode = new Node(element);
+      //       if (position >= length - 1) {
+      //         return false;
+      //       }
+      //       if (position === 0) {
+      //         currentNode.next = head;
+      //         head = currentNode;
+      //       } else {
+      //         let previewNode = head;
+      //         for (let i = 1; i < position; i++) {
+      //           previewNode = previewNode.next;
+      //         }
+      //         currentNode.next = previewNode.next;
+      //         previewNode.next = currentNode;
+      //       }
+      //       length++;
+      //       return true;
+      //     };
+      //     this.removeAt = function(position) {
+      //       if (position > length - 1) {
+      //         return false;
+      //       }
+      //       if (position === 0) {
+      //         head = null;
+      //         return true;
+      //       }
+      //       let currentNode = head;
+      //       for (let index = 1; index < position; index++) {
+      //         currentNode = currentNode.next;
+      //       }
+      //       currentNode.next = null;
+      //       return true;
+      //     };
+      //     this.remove = function(element) {
+      //       if (head.element === element) {
+      //         head = head.next;
+      //         length--;
+      //         return true;
+      //       } else {
+      //         let currentNode = head.next,
+      //           previewNode = head;
+      //         while (currentNode !== null && currentNode.element !== element) {
+      //           previewNode = currentNode;
+      //           currentNode = currentNode.next;
+      //         }
+      //         if (currentNode === null) {
+      //           return false;
+      //         }
+      //         previewNode.next = currentNode.next;
+      //         length--;
+      //         return true;
+      //       }
+      //     };
+      //     this.indexOf = function(element) {
+      //       let currentNode = head;
+      //       for (let i = 0; i < length; i++) {
+      //         if (currentNode.element === element) {
+      //           return i;
+      //         }
+      //         currentNode = currentNode.next;
+      //       }
+      //       return -1;
+      //     };
+      //     this.isEmpty = function() {
+      //       return length !== 0;
+      //     };
+      //     this.size = function() {
+      //       return length;
+      //     };
+      //     this.getHead = function() {
+      //       return head;
+      //     };
+      //     this.toString = function() {
+      //       let currentNode = head,
+      //         nodeList = [];
+      //       while (currentNode !== null) {
+      //         nodeList.push(currentNode.element);
+      //         currentNode = currentNode.next;
+      //       }
+      //       return nodeList.join(",");
+      //     };
+      //     this.print = function() {
+      //       let currentNode = head;
+      //       while (currentNode !== null) {
+      //         console.log(currentNode.element);
+      //         currentNode = currentNode.next;
+      //       }
+      //     };
+      //   }
+      //   let nodeList = new LinkedList();
+      //   nodeList.append("ye");
+      //   nodeList.append("yy");
+      //   nodeList.append("yx");
+      //   nodeList.append("ys");
+      //   nodeList.print();
+      //   console.log(nodeList.indexOf("yx"));
+      //   console.log(nodeList.insert("yw", 1));
+      //   //   nodeList.remove("yy");
+      //   console.log(nodeList.indexOf("yx"));
+      //   console.log(nodeList.size(), "length");
+      //   nodeList.remove("yy");
+      //   console.log(nodeList.indexOf("yx"));
+      //   console.log(nodeList.toString());
+      //   console.log(nodeList.isEmpty());
+      //   console.log(nodeList.size(), "length");
+
+      //双向链表
+      //   function LinkedList() {
+      //     function Node(element) {
+      //       this.element = element;
+      //       this.next = null;
+      //       this.pre = null;
+      //     }
+      //     let length = 0,
+      //       head = null;
+      //     this.append = function(element) {
+      //       let currentNode = new Node(element);
+      //       if (head === null) {
+      //         head = currentNode;
+      //       } else {
+      //         let lastNode = head;
+      //         while (lastNode.next !== null) {
+      //           lastNode = lastNode.next;
+      //         }
+      //         lastNode.next = currentNode;
+      //         currentNode.pre = lastNode;
+      //       }
+      //       length++;
+      //       return true;
+      //     };
+      //     this.insert = function(element, position) {
+      //       let currentNode = new Node(element);
+      //       if (position >= length - 1) {
+      //         return false;
+      //       }
+      //       if (position === 0) {
+      //         currentNode.next = head;
+      //         head.pre = currentNode;
+      //         head = currentNode;
+      //       } else {
+      //         let previewNode = head;
+      //         for (let i = 1; i < position; i++) {
+      //           previewNode = previewNode.next;
+      //         }
+      //         currentNode.next = previewNode.next;
+      //         currentNode.pre = previewNode;
+      //         previewNode.next = currentNode;
+      //         currentNode.next.pre = currentNode;
+      //       }
+      //       length++;
+      //       return true;
+      //     };
+      //     this.removeAt = function(position) {
+      //       if (position > length - 1) {
+      //         return false;
+      //       }
+      //       if (position === 0) {
+      //         head = null;
+      //         return true;
+      //       }
+      //       let currentNode = head;
+      //       for (let index = 1; index < position; index++) {
+      //         currentNode = currentNode.next;
+      //       }
+      //       currentNode.next.pre = null;
+      //       currentNode.next = null;
+      //       return true;
+      //     };
+      //     this.remove = function(element) {
+      //       if (head.element === element) {
+      //         head = head.next;
+      //         length--;
+      //         return true;
+      //       } else {
+      //         let currentNode = head.next,
+      //           previewNode = head;
+      //         while (currentNode !== null && currentNode.element !== element) {
+      //           previewNode = currentNode;
+      //           currentNode = currentNode.next;
+      //         }
+      //         if (currentNode === null) {
+      //           return false;
+      //         }
+      //         previewNode.next = currentNode.next;
+      //         currentNode.next.pre = previewNode;
+      //         currentNode = null;
+      //         length--;
+      //         return true;
+      //       }
+      //     };
+      //     this.indexOf = function(element) {
+      //       let currentNode = head;
+      //       for (let i = 0; i < length; i++) {
+      //         if (currentNode.element === element) {
+      //           return i;
+      //         }
+      //         currentNode = currentNode.next;
+      //       }
+      //       return -1;
+      //     };
+      //     this.isEmpty = function() {
+      //       return length !== 0;
+      //     };
+      //     this.size = function() {
+      //       return length;
+      //     };
+      //     this.getHead = function() {
+      //       return head;
+      //     };
+      //     this.toString = function() {
+      //       let currentNode = head,
+      //         nodeList = [];
+      //       while (currentNode !== null) {
+      //         nodeList.push(currentNode.element);
+      //         currentNode = currentNode.next;
+      //       }
+      //       return nodeList.join(",");
+      //     };
+      //     this.print = function() {
+      //       let currentNode = head;
+      //       while (currentNode !== null) {
+      //         console.log(currentNode.element);
+      //         currentNode = currentNode.next;
+      //       }
+      //     };
+      //   }
+      //   let nodeList = new LinkedList();
+      //   nodeList.append("ye");
+      //   nodeList.append("yy");
+      //   nodeList.append("yx");
+      //   nodeList.append("ys");
+      //   nodeList.print();
+      //   console.log(nodeList.indexOf("yx"));
+      //   console.log(nodeList.insert("yw", 1));
+      //   //   nodeList.remove("yy");
+      //   console.log(nodeList.indexOf("yx"));
+      //   console.log(nodeList.size(), "length");
+      //   nodeList.remove("yy");
+      //   console.log(nodeList.indexOf("yx"));
+      //   console.log(nodeList.toString());
+      //   console.log(nodeList.isEmpty());
+      //   console.log(nodeList.size(), "length");
+      //   console.log(nodeList.getHead());
+      let obj = {};
+      obj.b = 1;
+      obj[2] = 1;
+      obj[Symbol("aaa")] = 1;
+      obj.aaa = 1;
+      obj[1] = 1;
+      obj.a = 1;
+      console.log(Object.keys(obj));
+    </script>
+  </body>
+</html>

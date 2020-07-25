@@ -1,0 +1,36 @@
+.container {
+  /* height: 600px; */
+  height: auto;
+  width: 600px;
+  display: grid;
+  background: #ccc;
+  grid-template-columns: [c-1] 20% [c-2] 40% [r-3] 30% [r-4];
+  grid-template-rows: repeat(3, 150px);
+  gap: 10px;
+  grid-template-areas: "a a a" "b b b" "c c c";
+  justify-items: stretch;
+  align-items: stretch;
+  justify-content: stretch;
+  align-content: stretch;
+  grid-auto-rows: 150px;
+  grid-auto-columns: 100px;
+  grid-auto-flow: column dense;
+}
+.grid-item {
+  /* width: 100px; */
+  /* height: 100px; */
+  background: red;
+}
+.item-1 {
+  grid-area: c;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background: purple;
+}
+.item-2 {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  background: yellow;
+}

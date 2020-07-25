@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function fun(n){
+        //     return n===0?1:n*fun(n-1)
+        // }
+        function memfactorial(n){
+            if(!memfactorial.cache){
+                memfactorial={
+                    0:1,
+                    1:1
+                }
+            }
+            if(!memfactorial.cache.hasOwnProperty(n)){
+                memfactorial.cache[n]=n*memfactorial(n-1)
+            }
+            return memfactorial.cache[n]
+        }
+
+        function memoize(fun,cache){
+            cache=cache||{};
+            let shell=function(n){
+                if(!cache.hasOwnProperty(n)){
+                    cache[n]=fun(n)
+                }
+                return cache[n]
+            }
+            return shell
+        }
+    </script>
+</body>
+</html>

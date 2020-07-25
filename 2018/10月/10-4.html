@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let num1=2,num2=3;
+        // let res=eval('num1+num2');
+        // let sum=new Function('arg1','arg2','return arg1 + arg2');
+
+        // setTimeout('sum=num1+num2',100);
+        // setInterval('sum=num1+num2',1000);   
+        // function addHandler(target,type,handler){
+        //     //w3c标准
+        //     if(target.addEventListener){
+        //         target.addEventListener(type,handler,false);
+        //     }else{
+        //         //ie
+        //         targer.attachEvent(`on${type}`,handler);
+        //     }
+        // }
+        // function addHandler(target,type,handler){
+        //     if(target.addEventListener){
+        //         addHandler=function(target,type,handler){
+        //             target.addEventListener(type,handler,false);
+        //         }
+        //     }else {
+        //         addHandler=function(target,type,handler){
+        //             target.attachEvent(`on${type}`,handler);
+        //         }
+        //     }
+        //     addHandler(target,type,handler);
+        // }
+        // let addHandler=document.body.addEventListener?function(target,type,handler){
+        //     target.addEventListener(type,handler,false);}:function(target,type,handler){
+        //         target.attachEvent(`on${type}`,handler);
+        //     }
+        // let res1=25&3;
+        // let res2=25|3;
+        // let res3=25^3;
+        // let res4=~25;
+        // let res=4;
+        // console.log(res1,res2,res3,res4)
+        // console.log(res.toString(2))
+        // 先将数字转换成二进制。25.toString(2)，结果是11011,3是00011
+        // 11011
+        // 00011
+        //这样看结果就很明显了
+        //~按位取反的规则是，取反之后，第一个数字如果是1，再次取反，末尾+1，并且最后加-号。
+        // if(num&1){
+        //     console.log(`${num}是奇数`)
+        // }else{
+        //     console.log(`${num}是偶数`)
+        // }
+        // let  OPTION_A=1;
+        // let  OPTION_B=2;
+        // let  OPTION_C=4;
+        // let  OPTION_D=8;
+        // let  OPTION_E=16;
+        // let options=OPTION_AOPTION_C|OPTION_D|OPTION_E;
+        // if(OPTION_B&options){
+        //     //进不来
+        // }
+        // if(OPTION_C&options){
+        //     //进的来
+        // }
+        // let x=1;
+        // function foo(){
+        //     let b=10;
+        //     console.log(add(x));
+        // }
+        // function add(a){
+        //     return a+b
+        // }
+        // foo();
+        function * fibs(){
+            let a=0,b=1;
+            while(!0){
+                yield a;
+                [a,b]=[b,a+b];
+            }
+        }
+        let  [a,b,c,d,e,f,g,h,i,j]=fibs();
+        console.log([a,b,c,d,e,f,g,h,i,j])
+    </script>
+</body>
+</html>

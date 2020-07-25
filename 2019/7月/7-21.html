@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function sum(num, str) {
+        let sum = 0;
+        if (num.length <= 1) {
+          sum = +(+num >= +str);
+        } else {
+          sum = foo(num, str, -1);
+        }
+        return sum;
+      }
+      function foo(num, str, wei) {
+        let newStr = num.slice(0, num.length - 1);
+        let currentNum= +num[num.length - 1];
+        if(wei<0){
+            return +(currentNum >= +str)
+        }else{
+            return Math.pow(10,)+foo(newStr,str,++wei)
+        }
+         
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .fff {
+      float: left;
+      height: 100px;
+      width: 200px;
+    }
+    .aaa:before,
+    .aaa:after {
+      content: "";
+      /* display: none; */
+      display: block;
+      clear: both;
+    }
+  </style>
+  <body>
+    <div class="aaa">
+      <div class="fff"></div>
+    </div>
+  </body>
+</html>

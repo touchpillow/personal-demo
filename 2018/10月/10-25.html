@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        {{msg}}
+    </div>
+    <script>
+        let data1 = [{
+            "quote": "USDT",
+            "bases": [{
+                "c": "BTCUSDT",
+                "favoritesActive": false
+            }, {
+                "c": "ETHUSDT",
+                "favoritesActive": false
+            }, {
+                "c": "BCHUSDT",
+                "favoritesActive": false
+            }, {
+                "c": "EOSUSDT",
+                "favoritesActive": false
+            }, {
+                "c": "LTCUSDT",
+                "favoritesActive": false
+            }, {
+                "c": "XMRUSDT",
+                "favoritesActive": false
+            }, {
+                "c": "XRPUSDT",
+                "favoritesActive": false
+            }]
+        }, {
+            "quote": "BTC",
+            "bases": [{
+                "c": "ETHBTC",
+                "favoritesActive": false
+            }, {
+                "c": "BCHBTC",
+                "favoritesActive": false
+            }, {
+                "c": "EOSBTC",
+                "favoritesActive": false
+            }, {
+                "c": "LTCBTC",
+                "favoritesActive": false
+            }, {
+                "c": "XMRBTC",
+                "favoritesActive": false
+            }, {
+                "c": "XRPBTC",
+                "favoritesActive": false
+            }]
+        }, {
+            "quote": "ETH",
+            "bases": [{
+                "c": "BCHETH",
+                "favoritesActive": false
+            }, {
+                "c": "EOSETH",
+                "favoritesActive": false
+            }, {
+                "c": "LTCETH",
+                "favoritesActive": false
+            }, {
+                "c": "XMRETH",
+                "favoritesActive": false
+            }, {
+                "c": "XRPETH",
+                "favoritesActive": false
+            }]
+        }];
+        let data2 = [{
+                "quote": "USDT",
+                "bases": [{
+                    "c": "BCHUSDT",
+                    "favoritesActive": true
+                }, {
+                    "c": "BTCUSDT",
+                    "favoritesActive": true
+                }]
+            },
+            {
+                "quote": "ETH",
+                "bases": [{
+                    "c": "XMRETH",
+                    "favoritesActive": true
+                }, {
+                    "c": "XRPETH",
+                    "favoritesActive": true
+                }]
+            }
+        ];
+
+        function handleFun(x, y) {
+            y.forEach(item => {
+                x.forEach(item2 => {
+                    if (item.quote === item2.quote) {
+                        item.bases.forEach(item3 => {
+                            item2.bases.forEach(item4 => {
+                                item3.c === item4.c ? (item4.favoritesActive = true) :
+                                    ''
+                            })
+                        })
+                    }
+                })
+            })
+        };
+        // console.log(data1[0].bases[0].favoritesActive)
+        // handleFun(data1,data2);
+        // console.log(data1)
+
+        function foo() {
+            return {
+                a: 1
+            };
+        }
+        console.log(foo())
+        /*ddsf 
+        sdfd 
+        sdf gdf */
+        node.textContent = txt.replace(reg, (a, b) => {
+            new Watcher(vm, b, newValue => {
+                node.textContent = txt.replace(reg, newValue)
+            }) 
+            return this.getVMValue(vm, b)
+        })
+
+        
+        
+    </script>
+</body>
+
+</html>

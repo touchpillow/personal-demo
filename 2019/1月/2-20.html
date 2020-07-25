@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function sortNumber(n) {
+      let data = [...String(n)].reverse().join("").replace(/\d{3}/g, function(a, b) {
+          return `${a},`;
+        });
+        let res=[...data].reverse().join("").replace(/^,/,"");
+        debugger
+    }
+    sortNumber(12345678);
+  </script>
+</html>

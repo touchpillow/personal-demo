@@ -1,0 +1,186 @@
+<!--
+ * @Description: In User Settings Edit
+ * @Author: your name
+ * @Date: 2019-09-21 20:29:58
+ * @LastEditTime: 2019-09-21 23:01:45
+ * @LastEditors: Please set LastEditors
+ -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const tables = [
+        {
+          id: "1",
+          tableName: "one",
+          tableAlias: "t1",
+          tableDesc: "a",
+          selects: [
+            {
+              fieldName: "id",
+              filedAlias: "abc",
+              fieldType: "string",
+              id: "1-1"
+            },
+            {
+              fieldName: "conutn",
+              filedAlias: "ccc",
+              fieldType: "number",
+              id: "1-2"
+            }
+          ]
+        },
+        {
+          id: "2",
+          tableName: "two",
+          tableAlias: "t2",
+          tableDesc: "a",
+          selects: [
+            {
+              fieldName: "id",
+              filedAlias: "abc",
+              fieldType: "string",
+              id: "2-1"
+            },
+            {
+              fieldName: "conutn",
+              filedAlias: "ccc",
+              fieldType: "date",
+              id: "3-2"
+            }
+          ]
+        },
+        {
+          id: "3",
+          tableName: "thr",
+          tableAlias: "t3",
+          tableDesc: "a",
+          selects: [
+            {
+              fieldName: "id",
+              filedAlias: "abc",
+              fieldType: "location",
+              id: "3-1"
+            },
+            {
+              fieldName: "conutn",
+              filedAlias: "ccc",
+              fieldType: "string",
+              id: "3-2"
+            }
+          ]
+        }
+      ];
+      const joins = [
+        {
+          id: "234",
+          leftTable: "1",
+          rightTable: "2",
+          type: "left join",
+          condtion: {
+            "t1.id@=": "t2.id",
+            "t1.conutn@=": "t2.conutn"
+          }
+        },
+        {
+          id: "456",
+          leftTable: "1",
+          rightTable: "3",
+          type: "left join",
+          condtion: {
+            "t1.id@=": "t3 cyt  LOKI  .id",
+            "t1.conutn@=": "t3.conutn"
+          }
+        }
+      ];
+      const filters = {
+        "t1.id": "dsc",
+        "t3.id": "dsc",
+        "t2.conutn": "dsc"
+      };
+
+      function createNode() {
+        return {
+          id: "1",
+          tableName: "one",
+          tableAlias: "t1",
+          tableDesc: "a",
+          selects: [],
+          joins: []
+        };
+      }
+      function getTree(tables, joins) {
+        const indexMap = {};
+        const joinsMap = {};
+        const reralTables = tables.map((item, index) => {
+          indexMap[item.id] = index;
+          return {
+            ...item,
+            joins: {
+              id: "",
+              type: "",
+              data: []
+            },
+            children: []
+          };
+        });
+        joins.forEach(item => {
+          let table = reralTables[indexMap[item.rightTable]];
+          joinsMap[item.rightTable] = indexMap[item.leftTable];
+          table.joins.id = item.id;
+          table.joins.type = item.type;
+          table.joins.data = Object.entries(item.condtion).map(item => {
+            let key = item[0].split("@");
+            key.pop();
+            return {
+              parent: key.join("@"),
+              child: item[1]
+            };
+          });
+        });
+        return getMapTree(reralTables, [], joinsMap);
+        //结合joins和tables生成树
+      }
+      function getMapTree(table, res, joinsMap) {
+        table.forEach(item => {
+          if (!res.length) {
+            res.push(item);
+          } else {
+            table[joinsMap[item.id]].children.push(item);
+          }
+        });
+        return res;
+      }
+      let tree = getTree(tables, joins);
+      function getKesMap(tree, res = {}) {
+        return tree.reduce((val, item) => {
+          item.selects.reduce((val, item2) => {
+            val[`${item.tableAlias}.${item2.fieldName}`] = item2.fieldType;
+            return val;
+          }, res);
+          if (item.children && item.children.length) {
+            getKesMap(item.children, res);
+          }
+          return res;
+        }, res);
+      }
+      let keysMap = getKesMap(tree);
+      function getFilters(filter, keysMap) {
+        return Object.entries(filter).map(item => {
+          return {
+            field: item[0] + "@" + keysMap[item[0]],
+            type: item[1]
+          };
+        });
+      }
+      let filterRes = getFilters(filters, keysMap);
+      debugger;
+    </script>
+  </body>
+</html>

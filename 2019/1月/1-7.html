@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      Array.prototype.map = function(fn) {
+        let res = [];
+        let that = this;
+        for (let i = 0; i < that.length; i++) {
+          res.push(fn.call(null, that[i], i, that));
+        }
+        return res;
+      };
+      Array.prototype.filter = function(fn) {
+        let res = [];
+        let that = this;
+        for (let i = 0; i < that.length; i++) {
+          if (fn.call(null, that[i], i, that)) {
+            res.push(that[i]);
+          }
+        }
+        return res;
+      };
+      Array.prototype.reduce = function(...rest) {
+        let that = this;
+        let res = rest[1] === void 0 ? that[0] : rest[1];
+        ;
+        for (let i = 2 - rest.length; i < that.length; i++) {
+          ;
+          res = rest[0].call(null, res, that[i], i, that);
+        }
+        return res;
+      };
+      function mapCallBack(item, index, array) {
+        return item * index;
+      }
+      function filterCallBack(item, index, array) {
+        return item > 2;
+      }
+      function reduceCallBack(preVal, item, index, array) {
+        ;
+        return preVal + item * index;
+      }
+      let a = [1, 2, 3];
+      console.log(a.map(mapCallBack));
+      console.log(a.filter(filterCallBack));
+      console.log(a.reduce(reduceCallBack, 0));
+    </script>
+  </body>
+</html>

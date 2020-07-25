@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script src="./1-5.js"></script> -->
+    <script>
+      let a = Symbol(2);
+      console.log(a.valueOf().toString());
+      // let obj = {
+      //   valueOf() {
+      //     return 1;
+      //   },
+      //   toString() {
+      //     return 0;
+      //   }
+      // };
+      // let obj1 = {
+      //   valueOf() {
+      //     return 2;
+      //   },
+      //   toString() {
+      //     return [];
+      //   }
+      // };
+      // let obj2 = {
+      //   valueOf() {
+      //     return new Boolean(111);
+      //   },
+      //   toString() {
+      //     return [];
+      //   }
+      // };
+      // console.log(String(obj) + 233);
+      // console.log(~~obj);
+      // console.log(1 + obj); //验证普通对象toprimitive操作的类型是number
+      // console.log(1 + obj1); //验证+操作符的规则
+      // console.log(111 + new Date()); //验证Date对象的toprimitive操作的类型是string
+      // console.log(Number(obj1));
+      // console.log(Number(ob2));
+      // let obj = {
+      //   valueOf() {
+      //     return new Boolean(111);
+      //   },
+      //   toString() {
+      //     return "aaa";
+      //   }
+      // };
+      // let obj1 = {
+      //   valueOf() {
+      //     return 2;
+      //   },
+      //   toString() {
+      //     return [];
+      //   }
+      // };
+      // let obj2 = {
+      //   valueOf() {
+      //     return new Boolean(111);
+      //   },
+      //   toString() {
+      //     return [];
+      //   }
+      // };
+      // console.log(String(obj));
+      // console.log(String(obj1));
+      // console.log(String(obj2));
+    </script>
+  </body>
+</html>

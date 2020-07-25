@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        // let data=[[1,2,3],[1,1,1],4,5,6];
+        // let res=[];
+        // data.forEach(item=>{
+        //     item.forEach?item.forEach(val=>{
+        //         res.push(val)
+        //     }):res.push(item)
+        // });
+        // console.log(res)
+        // let data=[[1,2,3],[1,1,1],4,5,6];
+        // res=[].concat.apply([],data);
+        // console.log(res)
+        // let data=[[1,2,[7,8,[111,222]]],[1,1,1],4,5,6];
+        // let res=[];
+        // function  toArray(arr){
+        //     arr.forEach?(arr.forEach(item=>{
+        //         item.forEach?toArray(item):res.push(item)
+        //     })):res.push(arr);
+        //     return res 
+        // }
+        // toArray(data);
+        // console.log(res)
+        // let data=[[1,2,[7,8,[111,222]]],[1,1,1],4,5,6];
+        // function toArray(arr,initalVal){
+        //     let res= arr.reduce?arr.reduce((inital,item,index)=>{
+        //         return arr.reduce?(toArray(item,initalVal)):initalVal.push(item)
+        //     },initalVal):initalVal.push(arr)
+        //     console.log(initalVal)
+        //     return initalVal
+        // }
+        // let result=toArray(data,[])
+        // console.log(result)
+        // let data=[[1,2,[7,8,[111,222]]],[1,1,1],4,5,6];
+        // let res=data.flat(3);
+        // console.log(res)
+        // let data = [1, 2, 3, [4]];
+        // let res = data.flatMap(item => {
+        //     if (item instanceof Array) {
+        //         return [
+        //             [...item]
+        //         ]
+        //     } else {
+        //         return 2 * item
+        //     }
+        // })
+        // console.log(res)
+        // let data=new FormData();
+        // data.append('a',222);
+        // data.append('b',333);
+        // for(let value of data.values()){
+        //     console.log(value)
+        // }
+        // bodyStyle.color='red';
+        // bodyStyle.width='200px';
+        // let temp=computed.backgroundColor; 
+        // let temp=computed.width; 
+        // bodyDom.style.cssText='width:30px;height:20px'
+        // let fragment=document.createDocumentFragment();
+        // let newA=document.createElement('a');
+        // fragment.appendChild(newA);
+        // body.appendChild(fragment);
+        // let li=document.querySelector('.formItem');
+        // let newLi=li.cloneNode(true);
+        // //...对newLi进行一系列操作
+        // li.parentElement.replaceChild(newLi,li);
+        // let arr = [1, 2, 3, 4, 5]
+        // for (let i = 0, length = arr.length; i < length; i++) {
+        //     //代码
+        // }
+        // for (let i = arr.length; i--;) {
+        //     //代码
+        // }
+        // function duffsFun(number){
+        //     let iterations=Math.floor(number/6);
+        //     let start=number%6;
+        //     let i=0;
+        //     do{
+        //         switch(start){
+        //             case 0 :doSomething(i++);
+        //             case 5 :doSomething(i++);
+        //             case 4 :doSomething(i++);
+        //             case 3 :doSomething(i++);
+        //             case 2 :doSomething(i++);
+        //             case 1 :doSomething(i++);
+        //         }
+        //         start=0;
+        //     }while(iterations--)
+            
+        // }
+        // function doSomething(x){
+        //     console.log(x)
+        // }
+        // duffsFun(20);
+        // function fun(n){
+        //     return n==0?1:n*fun(n-1)
+        // }
+        // console.log(fun(8))
+
+        //快速排序
+        // function merage(left,right){
+        //     let result=[];
+        //     while(left.length>0&&right.length>0){
+        //         if(left[0]<right[0]){
+        //             result.push(left.shift());
+        //         }else {
+        //             result.push(right.shift());
+        //         }
+        //     }
+        //     return result.concat(left).concat(right);
+        // }
+        // function merageSort(item){
+
+        //     if(item.length==1){
+        //         return item
+        //     }
+        //     let middle=Math.floor(item.length/2);
+        //     let left=item.slice(0,middle);
+        //     let right=item.slice(middle);
+        //     return merage(merageSort(left),merageSort(right))
+        // }
+
+          function merage(left,right){
+            let result=[];
+            while(left.length>0&&right.length>0){
+                if(left[0]<right[0]){
+                    result.push(left.shift());
+                }else {
+                    result.push(right.shift());
+                }
+            }
+            return result.concat(left,right);
+        }
+        function fun(item){
+            let length=item.length;
+            if(length==1){
+                return item
+            }
+            let result=[];
+            for(let i=0;i<length;i++){
+                result.push([item[i]]);
+            }
+            if(length%2){
+                result.push([]);
+            }
+            for(let j=result.length;j>1;j=Math.floor((j+1)/2)){
+                for(let k=0,g=0;g<j;k++,g+=2){
+                    result[k]=merage(result[g],result[g+1])
+                }
+            }
+            return result[0]
+        }
+        let arr=[2,3,5,12,45,23,3,3,0,1];
+        console.log(fun(arr))
+        // console.log(merageSort(arr))
+    </script>
+
+</body>
+
+</html>
