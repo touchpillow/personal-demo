@@ -100,3 +100,69 @@
 //   return res[w - 1];
 // };
 // minPathSum(a);
+// var simplifyPath = function (path) {
+//   if (!path.length) return "/";
+//   const stack = [];
+//   const l = path.length;
+//   let start = 0,
+//     end = 1;
+//   while (end <= l) {
+//       if(path[end]==='/')
+//   }
+// };
+// var countOdds = function (low, high) {
+//   const dis = high - low;
+//   if (dis % 2) {
+//     return (dis + 1) / 2;
+//   } else {
+//     return dis / 2 + 1 - ((high + 1) % 2 ? 1 : 0);
+//   }
+// };
+// console.log(countOdds(8, 10));
+// var numOfSubarrays = function (arr) {};
+// var numSplits = function (s) {
+//   const l = s.length;
+//   if (!l) return 1;
+//   let res = 0;
+//   const map1 = new Map();
+//   const map2 = new Map();
+//   for (let i = 0; i < l; i++) {
+//     map2.set(s[i], (map2.get(s[i]) || 0) + 1);
+//   }
+//   for (let i = 0; i < l - 1; i++) {
+//     map1.set(s[i], (map1.get(s[i]) || 0) + 1);
+//     if (map2.get(s[i]) == 1) {
+//       map2.delete(s[i]);
+//     } else {
+//       map2.set(s[i], map2.get(s[i]) - 1);
+//     }
+//     if (map1.size === map2.size) {
+//       console.log(i);
+//       res++;
+//     }
+//   }
+//   return res;
+// };
+// console.log(numSplits("aacaba"));
+// var numOfSubarrays = function (arr) {
+//   arr.unshift(0);
+//   const l = arr.length;
+//   for (let i = 1; i < l; i++) {
+//     arr[i] = arr[i - 1] + arr[i];
+//   }
+//   let res = 0;
+//   let tem = 0;
+//   for (let i = 1; i < l; i++) {
+//     if ((arr[i] - arr[i - 1]) % 2) {
+//       temp = i - temp;
+//     }
+
+//     res += temp;
+//   }
+//   return res % (Math.pow(10, 9) + 7);
+// };
+// var a = [1, 3, 5];
+// console.log(numOfSubarrays(a));
+var minNumberOperations = function (target) {};
+var a = [1, 1, 1, 1];
+console.log(minNumberOperations(a));
