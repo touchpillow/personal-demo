@@ -7,22 +7,22 @@
     <style>
       .box {
         height: 500px;
-        display: grid;
-        grid-template-columns: 150px auto 150px;
-        grid-template-rows: 1;
       }
       .left {
         background: #ccc;
-        grid-column: 1/2;
+        width: 150px;
+        float: left;
+        height: 100%;
       }
       .right {
         background: red;
-        grid-column: 3/4;
+        width: 150px;
+        float: right;
+        height: 100%;
       }
       .content {
         background: green;
-        grid-column: 2/3;
-        grid-row: 1/2;
+        height: 100%;
       }
     </style>
   </head>

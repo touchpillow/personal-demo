@@ -1,80 +1,50 @@
-// var preorder = function (root) {
-//   const res = [];
-//   const search = (root) => {
-//     if (!root) return;
-//     res.push(root.val);
-//     if (root.children) {
-//       root.children.forEach(root);
-//     }
-//   };
-//   search(root);
-//   return res;
-// };
-// var preorder = function (root) {
-//   const stack = [root];
-//   const res = [];
-//   while (stack.length) {
-//     const item = stack.pop();
-//     if (!item) continue;
-//     res.push(item.val);
-//     if (item.children) {
-//       for (let l = item.children.length, i = l - 1; i >= 0; i--) {
-//         stack.push(item.children[i]);
-//       }
-//     }
+// var findLHS = function (nums) {
+//   const map = new Map();
+//   let res = 0;
+//   for (const i of nums) {
+//     map.set(i, (map.get(i) || 0) + 1);
+//   }
+//   for (const i of map.keys()) {
+//     res = Math.max(map.get(i) + map.get(i + 1), res);
 //   }
 //   return res;
 // };
-// var postorder = function (root) {
-//   const res = [];
-//   const search = (root) => {
-//     if (!root) return;
-//     if (root.children) {
-//       root.children.forEach(root);
-//     }
-//     res.push(root.val);
-//   };
-//   search(root);
-//   return res;
-// };
-// var postorder = function (root) {
-//   const stack = [root];
-//   const res = [];
-//   while (stack.length) {
-//     const item = stack.pop();
-//     if (!item) continue;
-//     res.unshift(item.val);
-//     if (item.children && item.children.length) {
-//       stack.push(...children);
-//     }
+// var maxCount = function (m, n, ops) {
+//   let mina = 0;
+//   let minb = 0;
+//   for (const [a, b] of ops) {
+//     a = Math.min(mina, a);
+//     b = Math.min(minb, b);
 //   }
-//   return res;
+//   return mina * minb;
 // };
-// var grayCode = function (n) {
-//   if (!n) return [0];
-// };
-var subsetsWithDup = function (nums) {
-  const res = [];
-  const temp = [];
-  nums.sort((a, b) => a - b);
-  const l = nums.length;
-  const search = (temp, start) => {
-    res.push(temp.slice(0));
-    let v;
-    if (temp.length) return;
-    for (let i = start; i < l; i++) {
-      if (!temp.length) {
-        console.log(i, nums[i], v, l);
+var numDecodings = function (s) {
+  const l = s.length;
+  let count = 0;
+  const map = new Map();
+  for (let i = 0; i < l; i++) {
+    if (!i) {
+      if (s[i] == "0") return 0;
+      count++;
+    } else {
+      if (s[i] == "0") {
+        if (Number(s[i - 1]) > 2) return 0;
+        if (s[i - 1] == "0") return 0;
+        if (s[i - 2] != "0") {
+          count = map.get(i - 2) || 1;
+        }
+      } else if (s[i - 1] == "0") {
+      } else {
+        if (Number(`${s[i - 1]}${s[i]}`) > 26) {
+        } else {
+          count = (map.get(i - 1) || 0) + (map.get(i - 2) || 1);
+        }
       }
-      if (nums[i] === v) return;
-      const tv = temp.slice(0);
-      tv.push(nums[i]);
-      v = nums[i];
-      search(tv, i + 1);
     }
-  };
-  search(temp, 0);
-  return res;
+    console.log(i, count);
+    map.set(i, count);
+  }
+  return count;
 };
-const a = [1, 1, 2, 2];
-console.log(subsetsWithDup(a));
+var a = "1010";
+console.log(numDecodings(a));
