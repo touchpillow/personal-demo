@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="click1()">初始化长度</button>
+    <button onclick="click2()">不初始化长度</button>
+    <script>
+      function click1() {
+        const date = new Date().getTime();
+        const a = [];
+        for (let i = 0; i < 10000; i++) {
+          a.push({
+            a: 1,
+          });
+        }
+        console.log(new Date().getTime() - date);
+      }
+      function click2() {
+        const date = new Date().getTime();
+        const a = new Array(10000);
+        for (let i = 0; i < 10000; i++) {
+          a[i] = { a: 1 };
+        }
+        console.log(new Date().getTime() - date);
+      }
+    </script>
+  </body>
+</html>
