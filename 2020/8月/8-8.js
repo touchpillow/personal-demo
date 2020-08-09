@@ -89,32 +89,37 @@
 //   return numTreesAA(n);
 // };
 // console.log(numTrees(3));
-var numDecodings = function (s) {
-  const l = s.length;
-  if (!l) return 0;
-  if (s[0] === "0") return 0;
+// var numDecodings = function (s) {
+//   const l = s.length;
+//   if (!l) return 0;
+//   if (s[0] === "0") return 0;
 
-  const map = new Array(l).fill(0);
-  map[0] = 1;
-  for (let i = 1; i < l; i++) {
-    if (s[i] == "0") {
-      if (Number(s[i - 1]) > 2) return 0;
-      if (s[i - 1] == "0") return 0;
-      if (s[i - 2] != "0") {
-        map[i] = map[i - 2] || 1;
-      } else {
-        map[i] = map[i - 1];
-      }
-    } else if (s[i - 1] == "0") {
-      map[i] = map[i - 1];
-    } else {
-      if (Number(`${s[i - 1]}${s[i]}`) > 26) {
-        map[i] = map[i - 1];
-      } else {
-        map[i] = (map[i - 1] || 0) + (map[i - 2] || 1);
-      }
-    }
-  }
-  return map[l - 1];
-};
-console.log(numDecodings("110"));
+//   const map = new Array(l).fill(0);
+//   map[0] = 1;
+//   for (let i = 1; i < l; i++) {
+//     if (s[i] == "0") {
+//       if (Number(s[i - 1]) > 2) return 0;
+//       if (s[i - 1] == "0") return 0;
+//       if (s[i - 2] != "0") {
+//         map[i] = map[i - 2] || 1;
+//       } else {
+//         map[i] = map[i - 1];
+//       }
+//     } else if (s[i - 1] == "0") {
+//       map[i] = map[i - 1];
+//     } else {
+//       if (Number(`${s[i - 1]}${s[i]}`) > 26) {
+//         map[i] = map[i - 1];
+//       } else {
+//         map[i] = (map[i - 1] || 0) + (map[i - 2] || 1);
+//       }
+//     }
+//   }
+//   return map[l - 1];
+// };
+// console.log(numDecodings("110"));
+const a = { a: 1 };
+const b = Object.create(a);
+b.c = 1;
+console.log(Reflect.has(b, "a"));
+console.log("a" in b);
