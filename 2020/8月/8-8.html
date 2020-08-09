@@ -4,29 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      .content {
+        height: 300px;
+        background: red;
+      }
+      .content > div {
+        height: 100%;
+        width: 100px;
+      }
+      .son1 {
+        float: left;
+        background: red;
+      }
+      .son2 {
+        background-color: blue;
+        width: 100%;
+      }
+      .aa {
+        background: skyblue;
+        width: 200px;
+        height: 100%;
+        position: relative;
+      }
+      img {
+        z-index: -1;
+        position: relative;
+      }
+    </style>
   </head>
   <body>
-    <button onclick="click1()">初始化长度</button>
-    <button onclick="click2()">不初始化长度</button>
-    <script>
-      function click1() {
-        const date = new Date().getTime();
-        const a = [];
-        for (let i = 0; i < 10000; i++) {
-          a.push({
-            a: 1,
-          });
-        }
-        console.log(new Date().getTime() - date);
-      }
-      function click2() {
-        const date = new Date().getTime();
-        const a = new Array(10000);
-        for (let i = 0; i < 10000; i++) {
-          a[i] = { a: 1 };
-        }
-        console.log(new Date().getTime() - date);
-      }
-    </script>
+    <div class="content">
+      <span>sdfsdf</span>
+    </div>
+    <script></script>
   </body>
 </html>
