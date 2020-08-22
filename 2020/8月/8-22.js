@@ -185,27 +185,39 @@ var containsCycle = function (grid) {
   const h = grid.length;
   if (!h) return false;
   const w = grid[0].length;
-  const set = new Set();
-  const search = (i, j, set, v) => {
+  const search = (i, j, v) => {
+    let count = 0;
     if (i < 0 || i >= h) return false;
     if (j < 0 || j >= w) return false;
     if (grid[i][j] !== v) return false;
-    if (set.has(`${i}-${j}`)) return false;
-    set.add(`${i}-${j}`);
+    if ((grid[i - 1] && grid[i - 1][j]) == `**${v}`) count++;
+    if ((grid[i + 1] && grid[i + 1][j]) == `**${v}`) count++;
+    if (grid[i][j - 1] == `**${v}`) count++;
+    if (grid[i][j + 1] == `**${v}`) count++;
+    if (count >= 2) {
+      console.log(i, j);
+      return true;
+    }
+    grid[i][j] = `**${v}`;
     return (
-      search(i - 1, j, set, v) ||
-      search(i + 1, j, set, v) ||
-      search(i, j - 1, set, v) ||
-      search(i, j + 1, set, v)
+      search(i - 1, j, v) ||
+      search(i + 1, j, v) ||
+      search(i, j - 1, v) ||
+      search(i, j + 1, v)
     );
   };
   for (let i = 0; i < h; i++) {
     for (let j = 0; j < w; j++) {
-      const res = search(i, j, set, grid[i][j]);
+      if (grid[i][j].startsWith("**")) continue;
+      const res = search(i, j, grid[i][j]);
       if (res) return true;
-      set.clear();
     }
   }
-
   return false;
 };
+const a = [
+  ["a", "b", "b"],
+  ["b", "z", "b"],
+  ["b", "b", "a"],
+];
+console.log(containsCycle(a));
