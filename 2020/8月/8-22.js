@@ -125,3 +125,87 @@
 //   }
 //   return head1.next;
 // };
+// var wordBreak = function (s, wordDict) {
+
+// };
+// var thousandSeparator = function (n) {
+//   return `${n}`.replace(/(\d+?)(?=(\d{3})+$)/g, "$1.");
+// };
+// console.log(thousandSeparator(2223452334311));
+// var findSmallestSetOfVertices = function (n, edges) {
+//   const map = new Map();
+//   for (const [from, to] of edges) {
+//     if (map.get(from)) {
+//       map.get(from).push(to);
+//     } else {
+//       map.set(from, [to]);
+//     }
+//   }
+//   for (const key of map.keys()) {
+//     const temp = map.get(key);
+//     while (temp.length) {
+//       const keyV = temp.pop();
+//       if (map.get(keyV)) {
+//         temp.push(...map.get(keyV));
+//         map.delete(keyV);
+//       }
+//     }
+//   }
+//   return [...map.keys()];
+// };
+// const n = 5,
+//   edges = [
+//     [0, 1],
+//     [2, 1],
+//     [3, 1],
+//     [1, 4],
+//     [2, 4],
+//   ];
+// console.log(findSmallestSetOfVertices(n, edges));
+// let count = 0;
+// var minOperations = function (nums) {
+//   nums = nums.filter((i) => i);
+//   if (!nums.length) {
+//     return count;
+//   }
+//   for (let i = 0; i < nums.length; i++) {
+//     if (nums[i] % 2) {
+//       nums[i]--;
+//       count++;
+//       return minOperations(nums);
+//     }
+//   }
+//   nums = nums.map((i) => i / 2);
+//   count++;
+//   return minOperations(nums);
+// };
+// const a = [2, 2];
+// console.log(minOperations(a));
+var containsCycle = function (grid) {
+  const h = grid.length;
+  if (!h) return false;
+  const w = grid[0].length;
+  const set = new Set();
+  const search = (i, j, set, v) => {
+    if (i < 0 || i >= h) return false;
+    if (j < 0 || j >= w) return false;
+    if (grid[i][j] !== v) return false;
+    if (set.has(`${i}-${j}`)) return false;
+    set.add(`${i}-${j}`);
+    return (
+      search(i - 1, j, set, v) ||
+      search(i + 1, j, set, v) ||
+      search(i, j - 1, set, v) ||
+      search(i, j + 1, set, v)
+    );
+  };
+  for (let i = 0; i < h; i++) {
+    for (let j = 0; j < w; j++) {
+      const res = search(i, j, set, grid[i][j]);
+      if (res) return true;
+      set.clear();
+    }
+  }
+
+  return false;
+};
