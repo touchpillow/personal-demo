@@ -20,36 +20,66 @@
 // const a = [4, 0, 6, 6],
 //   b = [-5, -3, 4, 2];
 // console.log(isRectangleOverlap(a, b));
-var numMagicSquaresInside = function (grid) {
-  const h = grid.length;
-  let count = 0;
-  if (!h) return count;
-  const w = grid[0].length;
-  if (h < 3 || w < 3) return count;
-  for (let i = 0; i < h - 2; i++) {
-    for (let j = 0; j < w - 2; j++) {
-      if (checkGrid(i, j)) count++;
-    }
-  }
-  function checkGrid(i, j) {
-    const set = new Set();
-    let rowSum;
-    for (let row = 0; row < 3; row++) {
-      let sum = 0;
-      let cSum = 0;
-      for (let col = 0; col < 3; col++) {
-        if (set.has(grid[i + row][j + col])) return false;
-        set.add(grid[i + row][j + col]);
-        sum += grid[i + row][j + col];
-        cSum += grid[j + col][i + row];
+// var numMagicSquaresInside = function (grid) {
+//   const h = grid.length;
+//   let count = 0;
+//   if (!h) return count;
+//   const w = grid[0].length;
+//   if (h < 3 || w < 3) return count;
+//   for (let i = 0; i < h - 2; i++) {
+//     for (let j = 0; j < w - 2; j++) {
+//       if (checkGrid(i, j)) count++;
+//     }
+//   }
+//   function checkGrid(i, j) {
+//     const set = new Set();
+//     let rowSum;
+//     for (let row = 0; row < 3; row++) {
+//       let sum = 0;
+//       let cSum = 0;
+//       for (let col = 0; col < 3; col++) {
+//         if (set.has(grid[i + row][j + col])) return false;
+//         set.add(grid[i + row][j + col]);
+//         sum += grid[i + row][j + col];
+//         cSum += grid[j + col][i + row];
+//       }
+//       rowSum = rowSum || sum;
+//       if (sum !== rowSum) return false;
+//       if (rowSum !== cSum) return false;
+//     }
+//     if (grid[i][j] + grid[i + 2][j + 2] !== grid[i][j + 2] + grid[i + 2][j])
+//       return false;
+//     return true;
+//   }
+//   return count;
+// };
+var evalRPN = function (tokens) {
+  const pression = ["+", "-", "*", "/"];
+  const stack = [];
+  for (const s of tokens) {
+    if (pression.includes(s)) {
+      const v2 = stack.pop();
+      const v1 = stack.pop();
+      switch (s) {
+        case "+":
+          stack.push(v1 + v2);
+          break;
+        case "-":
+          stack.push(v1 - v2);
+          break;
+        case "*":
+          stack.push(v1 * v2);
+          break;
+        case "/":
+          stack.push(~~(v1 / v2));
+          break;
       }
-      rowSum = rowSum || sum;
-      if (sum !== rowSum) return false;
-      if (rowSum !== cSum) return false;
+    } else {
+      stack.push(s);
     }
-    if (grid[i][j] + grid[i + 2][j + 2] !== grid[i][j + 2] + grid[i + 2][j])
-      return false;
-    return true;
+    console.log(stack);
   }
-  return count;
+  return stack[0];
 };
+const a = ["2", "1", "+", "3", "*"];
+console.log(evalRPN(a));
