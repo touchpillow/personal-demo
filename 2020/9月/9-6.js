@@ -143,16 +143,94 @@
 //   }
 //   return res.map((item) => item.pop());
 // };
-var rightSideView = function (root) {
-  const res = [];
-  const search = (root, level) => {
-    if (!root) return;
-    if (res[level] === undefined) {
-      res[level] = root.val;
-    }
-    search(root.right, level + 1);
-    search(root.left, level + 1);
-  };
-  search(root, 0);
-  return res;
-};
+// var rightSideView = function (root) {
+//   const res = [];
+//   const search = (root, level) => {
+//     if (!root) return;
+//     if (res[level] === undefined) {
+//       res[level] = root.val;
+//     }
+//     search(root.right, level + 1);
+//     search(root.left, level + 1);
+//   };
+//   search(root, 0);
+//   return res;
+// };
+// function ListNode(val) {
+//   this.val = val;
+//   this.next = null;
+// }
+// var reverseKGroup = function (head, k) {
+//   if (k < 2) return head;
+//   let count = 1;
+//   const node = new ListNode();
+//   node.next = head;
+//   let pre = node;
+//   const reverse = (root) => {
+//     let pre = null;
+//     while (root) {
+//       const next = root.next;
+//       root.next = pre;
+//       pre = root;
+//       root = next;
+//     }
+//     return pre;
+//   };
+//   while (head) {
+//     console.log(111, count, k);
+//     if (count === k) {
+//       const next = head.next;
+//       head.next = null;
+//       const last = pre.next;
+//       pre.next = reverse(pre.next);
+//       pre = last;
+//       last.next = next;
+//       head = next;
+//       count = 1;
+//     } else {
+//       count++;
+//       head = head.next;
+//     }
+//   }
+//   return node.next;
+// };
+
+// const a = {
+//   val: 1,
+//   next: {
+//     val: 2,
+//     next: {
+//       val: 3,
+//       next: null,
+//     },
+//   },
+// };
+// console.log(reverseKGroup(a, 2));
+// var sortArrayByParity = function (A) {
+//   let left = 0;
+//   let right = A.length - 1;
+//   while (left < right) {
+//     while (!(A[left] % 2) && left < right) {
+//       left++;
+//     }
+//     while (A[right] % 2 && left < right) {
+//       right--;
+//     }
+//     [A[left], A[right]] = [A[right], A[left]];
+//   }
+//   return A;
+// };
+// const a = [1, 2, 3, 2, 3];
+// console.log(sortArrayByParity(a));
+// var sortArrayByParity = function (A) {
+//   let left = [];
+//   let right = [];
+//   for (const n of A) {
+//     if (n % 2) {
+//       right.push(n);
+//     } else {
+//       left.push(n);
+//     }
+//   }
+//   return left.concat(right);
+// };
