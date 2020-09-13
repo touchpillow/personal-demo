@@ -89,40 +89,116 @@
 //     [0, 2],
 //   ];
 // console.log(unhappyFriends(n, preferences, pairs));
-var minCostConnectPoints = function (points) {
-  const l = points.length;
-  let res = 0;
-  if (l < 2) return res;
-  const getDis = (a, b) => {
-    return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
-  };
-  const list = [points[0]];
-  points.shift();
-  while (points.length) {
-    const le = points.length;
-    let index;
-    let v = Infinity;
-    for (let i = 0; i < le; i++) {
-      for (const item of list) {
-        const curDis = getDis(points[i], item);
-        if (curDis < v) {
-          index = i;
-          v = curDis;
-        }
-      }
-    }
-    list.push(points.splice(index, 1)[0]);
-    console.log(list);
-    res += v;
+// var minCostConnectPoints = function (points) {
+//   const l = points.length;
+//   let res = 0;
+//   if (l < 2) return res;
+//   const getDis = (a, b) => {
+//     return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1]);
+//   };
+//   const list = [points[0]];
+//   points.shift();
+//   while (points.length) {
+//     const le = points.length;
+//     let index;
+//     let v = Infinity;
+//     for (let i = 0; i < le; i++) {
+//       for (const item of list) {
+//         const curDis = getDis(points[i], item);
+//         if (curDis < v) {
+//           index = i;
+//           v = curDis;
+//         }
+//       }
+//     }
+//     list.push(points.splice(index, 1)[0]);
+//     console.log(list);
+//     res += v;
+//   }
+//   return res;
+// };
+// const points = [
+//   [7, 18],
+//   [-15, 19],
+//   [-18, -15],
+//   [-7, 14],
+//   [4, 1],
+//   [-6, 3],
+// ];
+// console.log(minCostConnectPoints(points));
+// var isTransformable = function (s, t) {
+//   if (s.length !== t.length) return false;
+//   let left = 0;
+//   const l = s.length;
+//   let right = l - 1;
+//   s = s.split("");
+//   while (left <= right) {
+//     while (s[left] == t[left] && left <= right) {
+//       left++;
+//     }
+//     while (s[right] == t[right] && left <= right) {
+//       right--;
+//     }
+//     if (left > right) return true;
+//     s.sort()
+//     if (t[left] === Math.max(...s.slice(left, right + 1))) {
+//     } else {
+//       return false;
+//     }
+//   }
+// };
+// var isAlienSorted = function (words, order) {
+//   const map = new Map();
+//   for (let i = 0; i < 26; i++) {
+//     map.set(order[i], i);
+//   }
+//   const l = words.length;
+//   const getN = (s1, s2) => {
+//     const l = s1.length;
+//     for (let i = 0; i < l; i++) {
+//       if (!s2[i]) return false;
+//       if (map.get(s1[i]) > map.get(s2[i])) return false;
+//       if (map.get(s1[i]) < map.get(s2[i])) return true;
+//     }
+//     return true;
+//   };
+//   for (let i = 0; i < l - 1; i++) {
+//     if (!getN(words[i], words[i + 1])) {
+//       return false;
+//     }
+//   }
+//   return true;
+// };
+// const words = ["kuvp", "q"],
+//   order = "ngxlkthsjuoqcpavbfdermiywz";
+// console.log(isAlienSorted(words, order));
+// var repeatedNTimes = function (A) {
+//   const l = A.length;
+//   const map = new Map();
+//   for (const n of A) {
+//     const count = (map.get(n) || 0) + 1;
+//     if (c == l / 2) return n;
+//     map.set(n, count);
+//   }
+// };
+var rob = function (nums) {
+  const l = nums.length;
+  if (l < 3) return Math.max(...nums);
+  let v1 = 0,
+    v2 = nums[0];
+  for (let i = 1; i < l - 1; i++) {
+    const temp = v2;
+    v2 = Math.max(v2, v1 + nums[i]);
+    v1 = temp;
   }
-  return res;
+  v1 = 0;
+  let v3 = nums[1];
+  for (let i = 2; i < l; i++) {
+    const temp = v3;
+    v3 = Math.max(v3, v1 + nums[i]);
+    v1 = temp;
+  }
+  return Math.max(v2, v3);
 };
-const points = [
-  [7, 18],
-  [-15, 19],
-  [-18, -15],
-  [-7, 14],
-  [4, 1],
-  [-6, 3],
-];
-console.log(minCostConnectPoints(points));
+const a = [1, 3, 1, 3, 100];
+console.log(rob(a));
