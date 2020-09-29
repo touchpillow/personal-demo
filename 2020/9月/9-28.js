@@ -21,14 +21,14 @@
 // };
 // const a = "1.1.1.1";
 // console.log(defangIPaddr(a));
-var singleNumber = function (nums) {
-  const map = new Map();
-  for (const n of nums) {
-    map.set(n, (map.get(n) || 0) + 1);
-  }
-  const res = [];
-  for (const key of map.keys()) {
-    if (map.get(key) == 1) res.push(key);
-  }
-  return res;
-};
+// var singleNumber = function (nums) {
+//   const map = new Map();
+//   for (const n of nums) {
+//     map.set(n, (map.get(n) || 0) + 1);
+//   }
+//   const res = [];
+//   for (const key of map.keys()) {
+//     if (map.get(key) == 1) res.push(key);
+//   }
+//   return res;
+// };
