@@ -19,18 +19,28 @@
 //     return words.filter((i) => i > ci).length;
 //   });
 // };
-var countCharacters = function (words, chars) {
-  const map1 = {};
-  for (const s of chars) {
-    map1[s] = (map1[s] || 0) + 1;
-  }
-  return words
-    .filter((item) => {
-      const a = JSON.parse(JSON.stringify(map1));
-      for (const n of item) {
-        if (!a[n]) return false;
-        a[n]--;
-      }
-    })
-    .reduce((a, b) => a + b.length, 0);
-};
+// var countCharacters = function (words, chars) {
+//   const map1 = {};
+//   for (const s of chars) {
+//     map1[s] = (map1[s] || 0) + 1;
+//   }
+//   return words
+//     .filter((item) => {
+//       const a = JSON.parse(JSON.stringify(map1));
+//       for (const n of item) {
+//         if (!a[n]) return false;
+//         a[n]--;
+//       }
+//     })
+//     .reduce((a, b) => a + b.length, 0);
+// };
+// document.getE
+// function father() {
+//   var a = 10;
+//   function son(b) {
+//     return a + b;
+//   }
+//   return son;
+// }
+// var b = father();
+// b(2);
