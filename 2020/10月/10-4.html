@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-size: 30px;
+      }
+      body,
+      html {
+        height: 100%;
+      }
+      .box {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+      .row {
+        display: flex;
+        flex-wrap: nowrap;
+        flex: auto;
+      }
+      .cell {
+        flex: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+      .cell-1 {
+        background: #ccc;
+      }
+
+      .cell-2 {
+        background: #eee;
+      }
+      .cell-3 {
+        background: pink;
+      }
+      .cell-4 {
+        background: blue;
+      }
+      .cell-5 {
+        background: green;
+      }
+      .cell-6 {
+        background: red;
+      }
+      .cell-7 {
+        background: brown;
+      }
+      .cell-8 {
+        background: #421085;
+      }
+      .cell-9 {
+        background: rgb(38, 160, 34);
+      }
+      .row.row-1,
+      .row.row-3 {
+        height: 200px;
+        flex: none;
+      }
+      .cell.fix {
+        width: 200px;
+        flex: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="row row-1">
+        <div class="cell cell-1 fix">1</div>
+        <div class="cell cell-2">2</div>
+        <div class="cell cell-3 fix">3</div>
+      </div>
+      <div class="row row-2">
+        <div class="cell cell-4 fix">4</div>
+        <div class="cell cell-5">5</div>
+        <div class="cell cell-6 fix">6</div>
+      </div>
+      <div class="row row-3">
+        <div class="cell cell-7 fix">7</div>
+        <div class="cell cell-8">8</div>
+        <div class="cell cell-9 fix">8</div>
+      </div>
+    </div>
+  </body>
+</html>
