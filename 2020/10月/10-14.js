@@ -25,25 +25,17 @@
 //   }
 //   return 1;
 // };
-var oddEvenList = function (head) {
-  const pre = new ListNode();
-  const ev = new ListNode();
-  let res = pre;
-  let odd = ev;
-  let v = 1;
-  while (head) {
-    if (v % 2) {
-      res.next = head;
-      head = head.next;
-      res = res.next;
-      res.next = null;
-    } else {
-      odd.next = head;
-      head = head.next;
-      odd = odd.next;
-      odd.next = null;
-    }
-  }
-  res.next = ev.next;
-  return pre.next;
-};
+// this.libList.forEach((item) => {
+//   const Z = CnChar.spell(item.address).slice(0, 1);
+//   firstName.push(Z);
+//   if (addList[Z]) {
+//     addList[Z].items.push(item.address);
+//   } else {
+//     addList[Z] = {
+//       title: Z,
+//       items: [item.address],
+//     };
+//   }
+// });
+const a = "sdcxerterxzchjui";
+console.log(a.split("").sort());
