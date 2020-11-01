@@ -99,7 +99,7 @@
 //   ladders = 0;
 // console.log(furthestBuilding(heights, bricks, ladders));
 var kthSmallestPath = function (destination, k) {
-  const [n, m] = destination;
+  let [n, m] = destination;
   const list = new Array(m + n + 1);
   list[0] = 1;
   for (let i = 1; i <= m + n; i++) {
@@ -109,17 +109,20 @@ var kthSmallestPath = function (destination, k) {
   let cur = "";
   let h = 0;
   while (sum < k) {
-    const temp = list[h + n] / (list[h] * list[n]);
+    const temp = list[n + h - 1] / (list[h] * list[n - 1]);
     if (sum + temp == k) {
-      cur += `${"H".repeat(m - h)}${"V".repeat(n)}${"H".repeat(h)}`;
+      console.log(cur, sum, h, m);
+      cur += `${"H".repeat(m - h)}V${"V".repeat(n - 1)}${"H".repeat(h)}`;
+      return cur;
     } else if (sum + temp < k) {
       h++;
+      sum += temp;
     } else {
       cur += `${"H".repeat(m - h)}V`;
       n--;
       k -= sum;
       sum = 0;
-      m -= h;
+      m = h;
       h = 0;
     }
   }
@@ -146,4 +149,4 @@ var kthSmallestPath = function (destination, k) {
 //   //   res.sort((a, b) => a > b);
 //   return res[k - 1];
 // };
-console.log(kthSmallestPath([15, 15], 155117520));
+console.log(kthSmallestPath([2, 3], 2));
