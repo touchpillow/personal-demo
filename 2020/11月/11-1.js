@@ -149,4 +149,46 @@ var kthSmallestPath = function (destination, k) {
 //   //   res.sort((a, b) => a > b);
 //   return res[k - 1];
 // };
-console.log(kthSmallestPath([2, 3], 2));
+// console.log(kthSmallestPath([2, 3], 2));
+// var kthSmallest = function (matrix, k) {
+//   const n = matrix.length;
+//   const list = new Array(n * n);
+//   let v = 0;
+//   for (let i = 0; i < n; i++) {
+//     for (let j = 0; j < n; j++) {
+//       list[v++] = matrix[i][j];
+//     }
+//   }
+//   list.sort((a, b) => a - b);
+//   return list[k - 1];
+// };
+var kthSmallest = function (matrix, k) {
+  const n = matrix.length;
+  let c = 1;
+  const list = new Array(n).fill(0);
+  let res = matrix[0][0];
+  list[0] = 1;
+  while (c < k) {
+    let cur = matrix[0][list[0]] || Infinity;
+    let index = 0;
+    for (let i = 1; i < n; i++) {
+      if ((matrix[i][list[i]] || Infinity) < cur) {
+        cur = matrix[i][list[i]];
+        index = i;
+      }
+    }
+    console.log(cur);
+    res = cur;
+    list[index]++;
+    c++;
+  }
+  return res;
+};
+const matrix = [
+    [1, 5, 9],
+    [10, 11, 13],
+    [12, 13, 15],
+  ],
+  k = 8;
+
+console.log(kthSmallest(matrix, k));
