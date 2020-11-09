@@ -18,6 +18,7 @@ const option = {
 const callback = function (mutationsList, observer) {
   // Use traditional 'for loops' for IE 11
   for (const mutation of mutationsList) {
+    debugger;
     console.log("微任务----observe");
   }
 };
@@ -30,7 +31,8 @@ observer.observe(content, option);
 
 //修改dom属性
 // content.classList.add("new-class");
-content.setAttribute("aaaa", 2);
+// content.setAttribute("aaaa", 2);\
+content.style.width = "200px";
 window.setTimeout(() => {
   console.log("宏任务");
 }, 0);
