@@ -71,29 +71,106 @@
 //   }
 //   return stack;
 // };
-var reconstructQueue = function (people) {
-  people.sort((a, b) => {
-    if (a[0] === b[0]) {
-      return a[1] - b[1];
-    }
-    return b[0] - a[0];
-  });
+// var reconstructQueue = function (people) {
+//   people.sort((a, b) => {
+//     if (a[0] === b[0]) {
+//       return a[1] - b[1];
+//     }
+//     return b[0] - a[0];
+//   });
+//   const stack = [];
+//   for (const item of people) {
+//     if (!stack.length) {
+//       stack.push(item);
+//     } else {
+//       stack.splice(item[1], 0, item);
+//     }
+//   }
+//   return stack;
+// };
+// const nums = [
+//   [7, 0],
+//   [4, 4],
+//   [7, 1],
+//   [5, 0],
+//   [6, 1],
+//   [5, 2],
+// ];
+// console.log(reconstructQueue(nums));
+// var isSymmetric = function (root) {
+//   if (!root) return true;
+//   const stack = [root];
+//   while (stack.length) {
+//     if (stack.length < 2) {
+//       const item = stack.pop();
+//       if (!item) return true;
+//       stack.push(item.left, item.right);
+//     } else {
+//       const left = [];
+//       const right = [];
+//       while (stack.length > 1) {
+//         const top = stack.shift();
+//         const bottom = stack.pop();
+//         if (top === bottom) continue;
+//         if (!top || !bottom) return false;
+//         if (top.val !== bottom.val) return false;
+//         left.push(top.left, top, right);
+//         right.unshift(bottom.left, bottom.right);
+//       }
+//       if (stack.length && stack[0]) {
+//         left.push(stack[0].left, stack[0].right);
+//       }
+//       stack.push(...left, ...right);
+//     }
+//   }
+//   return true;
+// };
+// var spiralOrder = function (matrix) {
+//   const res = [];
+
+// };
+// var MinStack = function () {
+//   this.val = [];
+//   this.index = [];
+// };
+
+// /**
+//  * @param {number} x
+//  * @return {void}
+//  */
+// MinStack.prototype.push = function (x) {
+//   this.val.push(x);
+// };
+
+// /**
+//  * @return {void}
+//  */
+// MinStack.prototype.pop = function () {
+//   this.val.pop(x);
+// };
+
+// /**
+//  * @return {number}
+//  */
+// MinStack.prototype.top = function () {};
+
+// /**
+//  * @return {number}
+//  */
+// MinStack.prototype.min = function () {};
+var levelOrder = function (root) {
+  if (!root) return [];
   const stack = [];
-  for (const item of people) {
-    if (!stack.length) {
-      stack.push(item);
+  const search = (root, leval = 0) => {
+    if (!root) return;
+    if (stack[level]) {
+      stack[level].push(root.val);
     } else {
-      stack.splice(item[1], 0, item);
+      stack[level] = [root.val];
     }
-  }
+    search(root.left, level + 1);
+    search(root.right, level + 1);
+  };
+  search(root);
   return stack;
 };
-const nums = [
-  [7, 0],
-  [4, 4],
-  [7, 1],
-  [5, 0],
-  [6, 1],
-  [5, 2],
-];
-console.log(reconstructQueue(nums));
