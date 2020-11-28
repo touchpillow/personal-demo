@@ -62,29 +62,49 @@
 // MyQueue.prototype.empty = function () {
 //   return !this.stack1 && !this.stack2;
 // };
-const reverse = (root, pre) => {
-  if (!root) return pre;
-  const next = root.next;
-  root.next = pre;
-  return reverse(next, root);
-};
-var addTwoNumbers = function (l1, l2) {
-  if (!l1) return l2;
-  if (!l2) return l1;
-  l1 = reverse(l1);
-  l2 = reverse(l2);
-  const res = l1;
-  let v = 0;
-  while (l1 || l2) {
-    if (!l1.next) {
-      l1.next = l2.next;
-      l2.next = null;
+// const reverse = (root, pre) => {
+//   if (!root) return pre;
+//   const next = root.next;
+//   root.next = pre;
+//   return reverse(next, root);
+// };
+// var addTwoNumbers = function (l1, l2) {
+//   if (!l1) return l2;
+//   if (!l2) return l1;
+//   l1 = reverse(l1);
+//   l2 = reverse(l2);
+//   const res = l1;
+//   let v = 0;
+//   while (l1 || l2) {
+//     if (!l1.next) {
+//       l1.next = l2.next;
+//       l2.next = null;
+//     }
+//     const temp = l1.val + l2?.val ?? 0;
+//     v = temp / 10;
+//     l1.val = temp % 10;
+//     l1 = l1.next;
+//     l2 = l2.next;
+//   }
+//   return reverse(l1);
+// };
+var majorityElement = function (nums) {
+  const l = nums.length;
+  let cur,
+    c = 0;
+  for (const n of nums) {
+    if (!c) {
+      c++;
+      cur = n;
+    } else if (cur == n) {
+      c++;
+    } else {
+      c--;
     }
-    const temp = l1.val + l2?.val ?? 0;
-    v = temp / 10;
-    l1.val = temp % 10;
-    l1 = l1.next;
-    l2 = l2.next;
   }
-  return reverse(l1);
+  c = 0;
+  for (const n of nums) {
+    if (n == cur) c++;
+  }
+  return c > l / 2 ? cur : -1;
 };
