@@ -51,3 +51,36 @@ var minMoves = function (nums, limit) {
 const nums = [1, 2, 2, 1],
   limit = 2;
 console.log(minMoves(nums, limit));
+//(item,index) in [1,2,3]
+// item : 1 2 3
+// index: 0 1 2
+
+//  obj = {
+//   1: 1,
+//   v: 2,
+//   c: 3,
+// };
+//(item,index) in obj
+// item : 1 2 3
+// index: 1 v c
+
+// (item,index) in 'abc'
+// item: a b c
+// index: 0 1 2
+
+// (item,index) in 3
+// item: 1 2 3
+// index: 0 1 2
+
+// const set = new Set([3, 4, 5]);
+// (item,index) in set
+// item: 3 4 5
+// index: 0 1 2
+
+// const map = new Map();
+// map.set(1,2)
+// map.set(3,4)
+// map.set(5,6)
+// (item,index) in map
+// item: [1,2] [3,4] [5,6]
+// index: 0 1 2
