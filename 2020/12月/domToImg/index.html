@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section class="page-wrap flex -column">
+      <div class="content flex">
+        <div class="left full-h">
+          <div class="img-item flex -column y-axis-center">
+            <span>刘亦菲</span>
+            <!-- <img
+              class="img-box"
+              crossorigin="Anonymous"
+              src="./asset/lyf.jpg"
+              alt=""
+            /> -->
+          </div>
+          <div class="img-item flex -column y-axis-center">
+            <span>宫园薰</span>
+            <!-- <img
+              class="img-box"
+              crossorigin="Anonymous"
+              src="./asset/gyx.jpg"
+              alt=""
+            /> -->
+          </div>
+        </div>
+        <div class="right flex xy-axis-center">
+          <span class="title">DOM生成图片DEMO</span>
+        </div>
+      </div>
+      <div class="btn-area">
+        <button>下载页面</button>
+      </div>
+    </section>
+    <script src="./util.js"></script>
+    <script>
+      //   import { downloadDomToImg } from "./util";
+      const style = `<style>
+* {
+  box-sizing: border-box;
+}
+.flex {
+  display: flex;
+}
+.flex.-column {
+  flex-direction: column;
+}
+.full {
+  height: 100%;
+  width: 100%;
+}
+.full-h {
+  height: 100%;
+}
+.flex.x-axis-center {
+  justify-content: center;
+}
+.flex.y-axis-center {
+  align-items: center;
+}
+.flex.xy-axis-center {
+  justify-content: center;
+  align-items: center;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.page-wrap {
+  height: 100%;
+  padding: 24px;
+}
+.img-box {
+  width: 200px;
+}
+.title {
+  width: 0;
+  font-size: 36px;
+  font-weight: bold;
+  word-break: break-all;
+}
+.left {
+  width: 0;
+  flex: auto;
+}
+.right {
+  width: 40%;
+}
+.content {
+  height: 0;
+  flex: auto;
+}
+.btn-area {
+  padding: 0 24px;
+}
+.img-item + .img-item {
+  margin-top: 40px;
+}
+</style>
+`;
+      const target = document.querySelector("#target");
+      const btn = document.querySelector("button");
+      btn.addEventListener("click", downloadimg);
+      function downloadimg() {
+        const dom = document.querySelector(".page-wrap");
+        downloadDomToImg(
+          {
+            target: dom,
+            styleStr: style,
+          },
+          "demo.svg"
+        );
+      }
+    </script>
+  </body>
+</html>
