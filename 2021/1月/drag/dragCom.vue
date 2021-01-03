@@ -5,9 +5,8 @@
       ref="dragItem"
       v-for="(item,index) in list"
       :key="`${item.text}`"
-      draggable
       :style="getTop(item.id)"
-      @dragstart="dragStartHandle(item.id)"
+      @dragstart.stop="dragStartHandle(item.id)"
       @dragover="dragoverHandle($event,item.id)"
       @dragend="dragEnd"
     >
@@ -39,9 +38,11 @@ export default {
       this.curDrag = -1;
     },
     dragStartHandle(id) {
+      console.log(123);
       this.curDrag = id;
     },
     dragoverHandle(e, id) {
+      console.log(111);
       e.preventDefault();
       if (this.curDrag === id) return;
       const target = e.target;
@@ -70,8 +71,8 @@ export default {
     },
     getTop(id) {
       return {
-        top: `${this.topMap[id]}px`
-        // opacity: id === this.curDrag ? "0" : "1",
+        top: `${this.topMap[id]}px`,
+        opacity: id === this.curDrag ? "0.3" : "1"
         // height: `${this.heightMap[id]}px`
       };
     },
@@ -110,7 +111,7 @@ export default {
   position: absolute;
   left: 0;
   top: 0;
-  transition: top 0.2s linear;
+  transition: top 0.5s ease-in-out;
 }
 .item-content {
   display: flex;
