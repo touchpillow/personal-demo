@@ -39,21 +39,27 @@
 var maximumScore = function (nums, multipliers) {
   const l1 = nums.length;
   const l2 = multipliers.length;
-  const dp1 = new Array(l1).fill("").map(() => new Array(l2).fill(0));
-  const dp2 = new Array(l1).fill("").map(() => new Array(l2).fill(0));
-  for (let i = 0; i < l1; i++) {
-    for (let j = 0; j < l2; j++) {
-      dp1[i][j] = nums[i] * multipliers[j];
-      dp2[i][j] = nums[i] * multipliers[j];
+  const dp = new Array(l2 + 1).fill("").map(() => new Array(l2 + 1).fill(0));
+
+  for (let i = 1; i <= l2; i++) {
+    dp[i][0] = dp[i - 1][0] + nums[i - 1] * multipliers[i - 1];
+    dp[0][i] = dp[0][i - 1] + nums[l1 - i] * multipliers[i - 1];
+  }
+  for (let i = 1; i < l2; i++) {
+    for (let j = 1; i + j <= l2; j++) {
+      dp[i][j] = Math.max(
+        dp[i][j - 1] + nums[l1 - j] * multipliers[i + j - 1],
+        dp[i - 1][j] + nums[i - 1] * multipliers[i + j - 1]
+      );
     }
   }
-  for (let i = l1 - 2; i >= 0; i--) {
-    for (let j = i + 1; j < l1; j++) {
-      dp2[j][0] = Math.max(dp2[j - 1][1] + dp1[j][0], dp2[j][1] + dp1[i][0]);
-      console.log(dp2);
+  let max = 0;
+  for (let i = 1; i < l2; i++) {
+    for (let j = 1; i + j <= l2; j++) {
+      max = Math.max(dp[i][j], max);
     }
   }
-  return Math.max(...dp2[1]);
+  return max;
 };
 const nums = [-5, -3, -3, -2, 7, 1],
   multipliers = [-10, -5, 3, 4, 6];
