@@ -37,11 +37,14 @@
 // ); //1
 // let a = 0;
 // let b = null;
+// let c = 1;
+
 // a ??= 1; //a:0
 // a ||= 1; //a:1
 // b ??= 1; //b:1
 // b ||= 2; //b:2
-
+// a &&= 1; //a:0
+// c &&= 2; //c:2
 // const a = {};
 
 // const obj = new WeakRef(a);
