@@ -95,26 +95,30 @@ var getCollisionTimes = function (cars) {
   const l = cars.length;
   if (!l) return [];
   const time = new Array(l).fill(0);
-  time[l - 1] = -1;
   for (let i = 0; i < l; i++) {
-    cars[2] = i;
+    cars[i][2] = i;
   }
-  cars.sort((a, b) => b[0] - a[0]);
-  let cur = position.shift();
-  let t = (target - cur[0]) / cur[1];
-  time[cur[2]] = -1;
-  while (position.length) {
-    const v = position.shift();
-    const t2 = (target - v[0]) / v[1];
-    if (t >= t2) {
-      time[v[2]] = (cur[0] - v[0]) / (v[1] - cur[1]);
-      continue;
-    } else {
-      c++;
-      cur = v;
-      t = t2;
-      time[cur[2]] = -1;
+  let stack = [];
+  const calcTime = (pre, next) => {
+    return (pre[0] - next[0]) / (next[1] - pre[1]);
+  };
+  while (cars.length) {
+    const v = cars.pop();
+    while (
+      stack.length &&
+      (stack[stack.length - 1][1] >= v[1] ||
+        (time[stack[stack.length - 1][2]] > 0 &&
+          time[stack[stack.length - 1][2]] <
+            calcTime(stack[stack.length - 1], v)))
+    ) {
+      stack.pop();
     }
+    if (stack.length) {
+      time[v[2]] = calcTime(stack[stack.length - 1], v);
+    } else {
+      time[v[2]] = -1;
+    }
+    stack.push(v);
   }
   return time;
 };
