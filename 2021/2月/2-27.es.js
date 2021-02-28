@@ -60,5 +60,5 @@
 // obj.deref(); //undefined 如果a被回收了
 const a = 123_3445;
 a === 1233445; //true
-const b = _123_342; //Uncaught ReferenceError: _123_342 is not defined
-const c = 333_344_; //Uncaught SyntaxError: Numeric separators are not allowed at the end of numeric literals
+// const b = _123_342; //Uncaught ReferenceError: _123_342 is not defined
+// const c = 333_344_; //Uncaught SyntaxError: Numeric separators are not allowed at the end of numeric literals
