@@ -74,7 +74,6 @@ var shortestBridge = function (A) {
     step++;
     stack.splice(0, stack.length, ...temp);
   }
-
   return step - 1;
 };
 const A = [

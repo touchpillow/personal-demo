@@ -1,4 +1,4 @@
-let data = [{}, {}]; //数据
+const data = [{}, {}]; //数据
 //基本思路
 //思路1（当前方法）：从分散到集中
 //1.遍历所有元素，将有相同parent_id的元素放在同一个数组的一个元素里（二维数组），数组的每一个元素有一个属性值parent_id，就是里面元素的parent_id，
@@ -11,15 +11,15 @@ let data = [{}, {}]; //数据
 //3.第三次遍历，原理同上
 
 /**
- * @description: 
- * @param {type} 
- * @return: 
+ * @description:
+ * @param {type}
+ * @return:
  */
 function Action1(data1) {
   let tempArray = [],
     flag = true;
-  data1.forEach(item1 => {
-    tempArray.forEach(item2 => {
+  data1.forEach((item1) => {
+    tempArray.forEach((item2) => {
       if (item1.parent_id == item2.parent_id) {
         //相同就添加
         item2.push(item1);

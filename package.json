@@ -1,0 +1,13 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/touchpillow/personal-demo.git",
+  "author": "touchpillow <1071721873@qq.com>",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.21.0",
+    "standard": "^16.0.3"
+  }
+}
