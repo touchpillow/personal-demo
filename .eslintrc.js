@@ -30,8 +30,10 @@ module.exports = {
       },
     ],
     // 关闭语句强制分号结尾
-    semi: 1, //key值前面是否要有空格
+    semi: 0, //key值前面是否要有空格
     "no-undef": 0,
     "no-trailing-spaces": 0,
+    "comma-dangle": 0,
+    quotes: "double",
   },
 };
