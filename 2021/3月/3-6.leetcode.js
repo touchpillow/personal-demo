@@ -84,24 +84,29 @@ var countPairs = function (n, edges, queries) {
   countList.sort((a, b) => map.get(a) - map.get(b));
   const res = new Array(queries.length).fill(0);
   queries.forEach((item, index) => {
-    const dp = new Array(n + 1).fill(0);
     for (let i = 1; i < n; i++) {
-      if (countList[i] === countList[i - 1]) {
-        res[index] = dp[index - 1];
+      let left = i + 1;
+      let right = n;
+      if (map.get(countList[right]) + map.get(countList[i]) <= item) {
+        continue;
+      } else if (map.get(countList[left]) + map.get(countList[i]) > item) {
+        res[index] += n - left + 1;
       } else {
-        let j = n;
-        while (
-          map.get(countList[j - 1]) + map.get(countList[i]) > item &&
-          j - 1 > i
-        ) {
-          j--;
+        while (right - left > 1) {
+          const middle = ~~((left + right) / 2);
+
+          if (map.get(countList[i]) + map.get(countList[middle]) > item) {
+            right = middle;
+          } else {
+            left = middle;
+          }
         }
-        if ((map.get(countList[j]) || 0) + map.get(countList[i]) > item) {
-          res[index] += n - j + 1;
-        }
+
+        // if ((map.get(countList[right]) || 0) + map.get(countList[i]) > item) {
+        res[index] += n - right + 1;
+        // }
       }
     }
-    dp[index] = res[index];
     for (const p of pList) {
       const i = p % (n + 1);
       const j = ~~(p / (n + 1));
@@ -129,5 +134,4 @@ const n = 5,
     [2, 5],
   ],
   queries = [1, 2, 3, 4, 5];
-
 console.log(countPairs(n, edges, queries));
