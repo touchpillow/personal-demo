@@ -75,15 +75,64 @@
 //   queries = [1, 2, 3, 4, 5];
 
 // console.log(countPairs(n, edges, queries));
-var minIncrementForUnique = function (A) {
-  A.sort((a, b) => a - b);
-  let c = 0;
-  const l = A.length;
-  for (let i = 1; i < l; i++) {
-    if (A[i] <= A[i - 1]) {
-      c += A[i - 1] + 1 - A[i];
-      A[i] = A[i - 1] + 1;
+// var minIncrementForUnique = function (A) {
+//   A.sort((a, b) => a - b);
+//   let c = 0;
+//   const l = A.length;
+//   for (let i = 1; i < l; i++) {
+//     if (A[i] <= A[i - 1]) {
+//       c += A[i - 1] + 1 - A[i];
+//       A[i] = A[i - 1] + 1;
+//     }
+//   }
+//   return c;
+// };
+// var validateStackSequences = function (pushed, popped) {
+//   const l = pushed.length;
+//   const stack = [];
+//   let j = 0;
+//   for (const n of pushed) {
+//     stack.push(n);
+//     while (stack.length && j < l && stack[stack.length - 1] == popped[j]) {
+//       stack.pop();
+//       j++;
+//     }
+//   }
+
+//   return j === l;
+// };
+// console.log(validateStackSequences([1, 2, 3], [1, 2, 3]));
+// const a = {
+//   index: 0,
+//   v: [true, false, 1, "", null],
+
+//   valueOf() {
+//     // return this.v[this.index++];
+//     return null;
+//   },
+// };
+// // console.log(a == true && a == false && a == 1 && a == "" && a == null);
+// console.log(a == null);
+function maxLength(arr = [10, 0, -1, -2, -3, -20, 10], targetSum = 10) {
+  let left = 0,
+    right = 1,
+    sum = arr[0],
+    maxLen = 0;
+  // 0 -1
+  if (sum < targetSum) maxLen = left + 1;
+
+  for (; right < arr.length; ) {
+    sum += arr[right];
+    if (sum < targetSum) {
+      maxLen = Math.max(maxLen, right - left + 1);
+      right++;
+    } else {
+      sum = sum - arr[left];
+      ++left;
+
+      ++right;
     }
   }
-  return c;
-};
+  return maxLen;
+}
+console.log(maxLength());
