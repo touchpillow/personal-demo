@@ -113,26 +113,49 @@
 // };
 // // console.log(a == true && a == false && a == 1 && a == "" && a == null);
 // console.log(a == null);
-function maxLength(arr = [10, 0, -1, -2, -3, -20, 10], targetSum = 10) {
-  let left = 0,
-    right = 1,
-    sum = arr[0],
-    maxLen = 0;
-  // 0 -1
-  if (sum < targetSum) maxLen = left + 1;
+// function maxLength(arr = [10, 0, -1, -2, -3, -20, 10], targetSum = 10) {
+//   let left = 0,
+//     right = 1,
+//     sum = arr[0],
+//     maxLen = 0;
+//   // 0 -1
+//   if (sum < targetSum) maxLen = left + 1;
 
-  for (; right < arr.length; ) {
-    sum += arr[right];
-    if (sum < targetSum) {
-      maxLen = Math.max(maxLen, right - left + 1);
-      right++;
+//   for (; right < arr.length; ) {
+//     sum += arr[right];
+//     if (sum < targetSum) {
+//       maxLen = Math.max(maxLen, right - left + 1);
+//       right++;
+//     } else {
+//       sum = sum - arr[left];
+//       ++left;
+
+//       ++right;
+//     }
+//   }
+//   return maxLen;
+// }
+// console.log(maxLength());
+//此时用双指针的方法，从边界向内收缩
+const maxLength = (arr, target) => {
+  const l = arr.length;
+  if (l === 1) return arr[0] < target ? 1 : 1;
+  let sum = arr.reduce((a, b) => a + b, 0);
+  let left = 0;
+  let right = l - 1;
+  while (right > left) {
+    if (sum < target) {
+      break;
+    }
+    if (arr[left] < arr[right]) {
+      sum -= arr[right];
+      right--;
     } else {
-      sum = sum - arr[left];
-      ++left;
-
-      ++right;
+      sum -= arr[left];
+      left++;
     }
   }
-  return maxLen;
-}
-console.log(maxLength());
+
+  return sum < target ? right - left + 1 : 0;
+};
+console.log(maxLength([10, 1, 10, 2, -10, 10], 10));
