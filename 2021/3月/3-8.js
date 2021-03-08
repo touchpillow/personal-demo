@@ -26,42 +26,44 @@
 //   [1, 1],
 // ];
 // console.log(removeStones(stones));
-// const list = [1, 2, 3, 4, 5];
-// const delay = 1000;
-// const createFun = (item) => {
-//   return () => {
-//     return new Promise((resolve) => {
-//       setTimeout(() => {
-//         console.log(item);
-//         resolve();
-//       }, delay);
-//     });
-//   };
-// };
-
-// list.map(createFun).reduce((p, item) => p.then(item), Promise.resolve());
-var bagOfTokensScore = function (tokens, P) {
-  tokens.sort((a, b) => a - b);
-  const l = tokens.length;
-  let left = 0;
-  let right = l - 1;
-  let c = 0;
-  let max = 0;
-  while (right >= left) {
-    if (P < tokens[left] && !c) break;
-    if (P < tokens[left]) {
-      P += tokens[right];
-      right--;
-      c--;
-    } else {
-      P -= tokens[left];
-      left++;
-      c++;
-      max = Math.max(c, max);
-    }
-  }
-  return max;
+const list = [1, 2, 3, 4, 5];
+const delay = 1000;
+const createFun = (item) => {
+  return () => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+        console.log(item);
+      }, delay);
+    });
+  };
 };
-const okens = [100, 200, 300, 400],
-  P = 200;
-console.log(bagOfTokensScore(okens, P));
+
+list.map(createFun).reduce((p, item) => {
+  return p.then(item);
+}, Promise.resolve());
+// var bagOfTokensScore = function (tokens, P) {
+//   tokens.sort((a, b) => a - b);
+//   const l = tokens.length;
+//   let left = 0;
+//   let right = l - 1;
+//   let c = 0;
+//   let max = 0;
+//   while (right >= left) {
+//     if (P < tokens[left] && !c) break;
+//     if (P < tokens[left]) {
+//       P += tokens[right];
+//       right--;
+//       c--;
+//     } else {
+//       P -= tokens[left];
+//       left++;
+//       c++;
+//       max = Math.max(c, max);
+//     }
+//   }
+//   return max;
+// };
+// const okens = [100, 200, 300, 400],
+//   P = 200;
+// console.log(bagOfTokensScore(okens, P));
