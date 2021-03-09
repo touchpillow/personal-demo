@@ -15,21 +15,29 @@
 //   dfs("", arr);
 //   return max && `${max.slice(0, 2)}:${max.slice(2)}`;
 // };
-var deckRevealedIncreasing = function (deck) {
-  deck.sort((a, b) => a - b);
-  const l = deck.length;
-  const stack = new Array(l);
-  let i = 0;
-  stack[0] = deck.shift();
-  while (deck.length) {
-    let step = 1;
-    while (step || stack[i] !== undefined) {
-      if (stack[i] === undefined) {
-        step--;
-      }
-      i = (i + 1) % l;
-    }
-    stack[i] = deck.shift();
-  }
-  return stack;
+// var deckRevealedIncreasing = function (deck) {
+//   deck.sort((a, b) => a - b);
+//   const l = deck.length;
+//   const stack = new Array(l);
+//   let i = 0;
+//   stack[0] = deck.shift();
+//   while (deck.length) {
+//     let step = 1;
+//     while (step || stack[i] !== undefined) {
+//       if (stack[i] === undefined) {
+//         step--;
+//       }
+//       i = (i + 1) % l;
+//     }
+//     stack[i] = deck.shift();
+//   }
+//   return stack;
+// };
+const createNode = (arr) => {
+  arr.push(0);
+  const stack = [];
+  const addUl = (url = "") => {
+    return `<${url}ul>`;
+  };
+  
 };
