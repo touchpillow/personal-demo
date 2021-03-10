@@ -33,11 +33,3 @@
 //   }
 //   return stack;
 // };
-const createNode = (arr) => {
-  arr.push(0);
-  const stack = [];
-  const addUl = (url = "") => {
-    return `<${url}ul>`;
-  };
-  
-};
