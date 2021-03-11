@@ -69,16 +69,37 @@
 //     .reverse()
 //     .join(" ");
 // };
-var simplifyPath = function (path) {
-  const stack = [];
-  path = path.split("/").filter((item) => item);
-  for (let i = 0, l = path.length; i < l; i++) {
-    if (path[i] === "..") {
-      stack.pop();
-    } else if (path[i] !== ".") {
-      stack.push(path[i]);
+// var simplifyPath = function (path) {
+//   const stack = [];
+//   path = path.split("/").filter((item) => item);
+//   for (let i = 0, l = path.length; i < l; i++) {
+//     if (path[i] === "..") {
+//       stack.pop();
+//     } else if (path[i] !== ".") {
+//       stack.push(path[i]);
+//     }
+//   }
+//   return `/${stack.join("/")}`;
+// };
+// console.log(simplifyPath("/a/./b/../../c/"));
+var sortString = function (s) {
+  s = s.split("").sort().join("");
+  const arr = s.match(/(.)\1*/g);
+  let res = "";
+  const codeCount = arr.map((item) => item.length);
+  const code = arr.map((item) => item[0]);
+  const l = codeCount.length;
+  let flag = 1;
+  while (res.length < s.length) {
+    for (let i = flag > 0 ? 0 : l - 1; flag > 0 ? i < l : i >= 0; i += flag) {
+      if (codeCount[i]) {
+        res += code[i];
+        codeCount[i]--;
+      }
     }
+    flag *= -1;
   }
-  return `/${stack.join("/")}`;
+  return res;
 };
-console.log(simplifyPath("/a/./b/../../c/"));
+const s = "aaaabbbbcccc";
+console.log(sortString(s));
