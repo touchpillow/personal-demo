@@ -37,29 +37,55 @@
 //   [2, 1],
 // ];
 // console.log(minAreaFreeRect(a));
-const transform = (s) => {
-  return s.toLowerCase().replace(/[aeiou]/g, "*");
-};
-var spellchecker = function (wordlist, queries) {
-  const map2 = new Map();
-  const map3 = new Map();
-  const map = new Map();
-  const l = wordlist.length;
-  for (let i = 0; i < l; i++) {
-    map.set(wordlist[i], i);
-    if (!map2.has(wordlist[i].toLowerCase())) {
-      map2.set(wordlist[i].toLowerCase(), i);
-    }
-    const newWord = transform(wordlist[i]);
-    if (!map3.has(newWord)) {
-      map3.set(newWord, i);
-    }
-  }
-  return queries.map((item) => {
-    return (
-      wordlist[
-        map.get(item) ?? map2.get(item.toLowerCase()) ?? map3.get(newItem)
-      ] ?? ""
-    );
-  });
-};
+// const transform = (s) => {
+//   return s.toLowerCase().replace(/[aeiou]/g, "*");
+// };
+// var spellchecker = function (wordlist, queries) {
+//   const map2 = new Map();
+//   const map3 = new Map();
+//   const map = new Map();
+//   const l = wordlist.length;
+//   for (let i = 0; i < l; i++) {
+//     map.set(wordlist[i], i);
+//     if (!map2.has(wordlist[i].toLowerCase())) {
+//       map2.set(wordlist[i].toLowerCase(), i);
+//     }
+//     const newWord = transform(wordlist[i]);
+//     if (!map3.has(newWord)) {
+//       map3.set(newWord, i);
+//     }
+//   }
+//   return queries.map((item) => {
+//     return (
+//       wordlist[
+//         map.get(item) ?? map2.get(item.toLowerCase()) ?? map3.get(newItem)
+//       ] ?? ""
+//     );
+//   });
+// };
+// const fn = (s) => {
+//   const stack = [
+//     {
+//       pre: "",
+//       next: s,
+//     },
+//   ];
+//   //next有值，说明字符还没取完
+//   while (stack[0].next.length) {
+//     const cur = stack.shift();
+//     const next = cur.next;
+//     const nextLen = next.length;
+//     //从剩余字符串中取每一个字符拼接当前字符
+//     //下一轮循环用到的字符串要去掉当前的字符
+//     for (let i = 0; i < nextLen; i++) {
+//       stack.push({
+//         pre: `${cur.pre}${next[i]}`,
+//         next: `${next.slice(0, i)}${next.slice(i + 1)}`,
+//       });
+//     }
+//   }
+//   return stack.map((item) => item.pre);
+// };
+// console.log(fn("abcd"));
+// console.log(a);
+// let a = "";

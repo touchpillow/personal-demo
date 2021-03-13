@@ -41,5 +41,6 @@ module.exports = {
     "spaced-comment": 0,
     "space-before-function-paren": 0,
     "one-var": 0,
+    "no-new": 0,
   },
 };
