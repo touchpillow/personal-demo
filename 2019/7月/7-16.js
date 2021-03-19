@@ -1,6 +1,3 @@
-function isObject(a) {
-  return typeof a == "object" && a != null;
-}
 let b = { a: 1 };
 let a = {
   a: 1,
@@ -10,8 +7,8 @@ let a = {
     e: {
       e: 4,
       f: 5,
-      n: b
-    }
+      n: b,
+    },
   },
   g: {
     n: b,
@@ -19,10 +16,10 @@ let a = {
     i: 7,
     j: {
       k: 8,
-      l: 9
-    }
+      l: 9,
+    },
   },
-  m: 10
+  m: 10,
 };
 //递归，深度优先遍历
 function deepClone2(data) {
@@ -49,7 +46,7 @@ async function deepClone3(data) {
         });
       }
     }
-    await new Promise(res => {
+    await new Promise((res) => {
       setTimeout(() => {
         res();
       }, 0);
@@ -62,13 +59,16 @@ async function deepClone3(data) {
   }
 }
 //循环，深度优先遍历
+function isObject(a) {
+  return typeof a == "object" && a != null;
+}
 function deepClone4(data) {
   let stack = [];
   let res = {};
   stack.push({
     key: undefined,
     data,
-    parent: res
+    parent: res,
   });
   let dataList = new Map();
   while (stack.length) {
@@ -92,7 +92,7 @@ function deepClone4(data) {
           stack.push({
             key,
             data: currData[key],
-            parent: temp
+            parent: temp,
           });
         }
       } else {
@@ -111,7 +111,7 @@ function deepClone5(data) {
   stack.push({
     key: undefined,
     data,
-    parent: res
+    parent: res,
   });
   while (stack.length) {
     let item = stack.shift();
@@ -128,7 +128,7 @@ function deepClone5(data) {
           stack.push({
             key,
             data: currData[key],
-            parent: temp
+            parent: temp,
           });
         }
       } else {
@@ -159,7 +159,7 @@ function reverseStr(s) {
   }
 }
 // console.log(reverseStr("123456"));
-Function.prototype.myBind = function() {
+Function.prototype.myBind = function () {
   // let _this=this;
   let _this = arguments[0];
   if (!_this) {
@@ -171,7 +171,7 @@ Function.prototype.myBind = function() {
     _this._fn(...arg, ...currArg);
   };
 };
-let c = function(a) {
+let c = function (a) {
   console.log(arguments);
 };
 // c.myBind(null, 2)(1);
