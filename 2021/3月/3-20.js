@@ -29,10 +29,10 @@
 // };
 // const s = ["f==a", "a==b", "f!=e", "a==c", "b==e", "c==f"];
 // console.log(equationsPossible(s));
-var brokenCalc = function (X, Y) {
-  if (X >= Y) return X - Y;
-  return 1 + brokenCalc(X, Y % 2 ? Y - 1 : Y / 2);
-};
+// var brokenCalc = function (X, Y) {
+//   if (X >= Y) return X - Y;
+//   return 1 + brokenCalc(X, Y % 2 ? Y - 1 : Y / 2);
+// };
 // var smallestFromLeaf = function (root) {
 //   let res;
 //   function dfs(node, str = "") {
@@ -49,3 +49,12 @@ var brokenCalc = function (X, Y) {
 //   dfs(root);
 //   return res;
 // };
+const d = [];
+for (let i = 0; i < 10; i++) {
+  d[i] = function () {
+    console.log(i++);
+  };
+}
+d[2]();
+d[2]();
+d[3]();
