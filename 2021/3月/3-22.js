@@ -75,22 +75,22 @@ const moveNumbers = (nums) => {
 };
 const nums = [6, 4, -3, 5, -2, -1, 0, 1, -9];
 console.log(moveNumbers(nums));
-// const codeKey = (obj) => {
-//   const res = {};
-//   const keys = Object.keys(obj);
-//   keys.forEach((item) => {
-//     const deepKeys = item.split(".");
-//     const lastKey = deepKeys.pop();
-//     let curObj = res;
-//     deepKeys.forEach((key) => {
-//       if (!curObj[key]) {
-//         curObj[key] = {};
-//       }
-//       curObj = curObj[key];
-//     });
-//     curObj[lastKey] = obj[item];
-//   });
-//   return res;
-// };
-// const obj = { A: 1, "B.A": 2, "B.B": 3, "CC.D.E": 4, "CC.D.F": 5 };
-// console.log(codeKey(obj));
+const codeKey = (obj) => {
+  const res = {};
+  const keys = Object.keys(obj);
+  keys.forEach((item) => {
+    const deepKeys = item.split(".");
+    const lastKey = deepKeys.pop();
+    let curObj = res;
+    deepKeys.forEach((key) => {
+      if (!curObj[key]) {
+        curObj[key] = {};
+      }
+      curObj = curObj[key];
+    });
+    curObj[lastKey] = obj[item];
+  });
+  return res;
+};
+const obj = { A: 1, "B.A": 2, "B.B": 3, "CC.D.E": 4, "CC.DD.F": 5 };
+console.log(codeKey(obj));
