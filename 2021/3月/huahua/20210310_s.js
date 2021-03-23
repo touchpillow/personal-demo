@@ -138,17 +138,23 @@ var buddyStrings = function (a, b) {
 //   }
 //   return maxLen ? maxLen - 2 : -1;
 // };
-var maxLengthBetweenEqualCharacters = function (s) {
-  const l = s.length;
-  if (l < 2) return 0;
-  const map = new Map();
-  let max = -1;
-  for (let i = 0; i < l; i++) {
-    if (map.has(s[i])) {
-      max = Math.max(max, i - map.get(s[i]) - 1);
-    } else {
-      map.set(s[i], i);
-    }
-  }
-  return max;
-};
+// var maxLengthBetweenEqualCharacters = function (s) {
+//   const l = s.length;
+//   if (l < 2) return 0;
+//   const map = new Map();
+//   let max = -1;
+//   for (let i = 0; i < l; i++) {
+//     if (map.has(s[i])) {
+//       max = Math.max(max, i - map.get(s[i]) - 1);
+//     } else {
+//       map.set(s[i], i);
+//     }
+//   }
+//   return max;
+// 1411
+// 5 4
+// 1000
+// 5 5
+// 10  // m < n
+// false
+// return true
