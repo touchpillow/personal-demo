@@ -1,23 +1,28 @@
-// function Parent(name, age) {
-//   this.name = name;
-//   this.age = age;
-// }
-// Parent.prototype.getName = function () {
-//   return this.name;
-// };
+function Parent(name, age) {
+  this.name = name;
+  this.age = age;
+}
+Parent.prototype.getName = function () {
+  return this.name;
+};
 
-// function Child() {
-//   //   const fun = function () {};
-//   //   fun.prototype = Parent.prototype;
-//   //   return Parent.apply(this, arguments);
-//   Child.prototype = Parent.prototype;
-//   return Parent.apply(this, arguments);
-// }
-// Child.prototype = new Parent();
-// const a = new Child("a", 123);
-// debugger;
-// console.log(a);
-// console.log(a.getName());
+function Child() {
+  // const fun = function () {};
+
+  // fun.prototype = Parent.prototype;
+  const a = {};
+  Object.setPrototypeOf(a, Parent.prototype);
+  const obj = Parent.apply(a, arguments);
+  console.log(obj);
+  return obj instanceof Object ? obj : a;
+  // return Parent.apply(this, arguments);
+  // Child.prototype = Parent.prototype;
+  // return Parent.apply(this, arguments);
+}
+Child.prototype.conctructor = Child;
+const a = new Child("a", 123);
+console.log(a);
+console.log(a.getName());
 
 // 1 -> 2 -> 3 -> 4
 // var isValid = function (s) {
@@ -74,7 +79,7 @@ const moveNumbers = (nums) => {
   return nums;
 };
 const nums = [6, 4, -3, 5, -2, -1, 0, 1, -9];
-console.log(moveNumbers(nums));
+// console.log(moveNumbers(nums));
 const codeKey = (obj) => {
   const res = {};
   const keys = Object.keys(obj);
@@ -93,4 +98,4 @@ const codeKey = (obj) => {
   return res;
 };
 const obj = { A: 1, "B.A": 2, "B.B": 3, "CC.D.E": 4, "CC.DD.F": 5 };
-console.log(codeKey(obj));
+// console.log(codeKey(obj));
