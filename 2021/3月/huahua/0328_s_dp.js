@@ -55,7 +55,7 @@ var NumArray = function (nums) {
   // this.nums = nums || [];
   this.cache = new Array(nums.length).fill(0);
   this.cache[0] = nums[0];
-  for (let i = 1; i <= nums.length; i++) {
+  for (let i = 1; i < nums.length; i++) {
     this.cache[i] = this.cache[i - 1] + nums[i];
   }
 };
