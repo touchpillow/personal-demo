@@ -82,33 +82,65 @@
 //     dfs(root.right, min, max)
 //   );
 // };
-var colorBorder = function (grid, r0, c0, color) {
-  const h = grid.length;
-  const w = grid[0].length;
-  if (grid[r0][c0] === color) return grid;
-  const init = grid[r0][c0];
-  const points = new Set();
-  const dfs = (i, j) => {
-    if (i < 0 || i >= h) return 0;
-    if (j < 0 || j >= w) return 0;
-    if (grid[i][j] === 0) return 1;
-    if (grid[i][j] !== init) return 0;
-    grid[i][j] = 0;
-    const count = dfs(i, j + 1) + dfs(i, j - 1) + dfs(i + 1, j) + dfs(i - 1, j);
-    if (count < 4) {
-      points.add(`${i}-${j}`);
-    }
-    return 1;
-  };
-  dfs(r0, c0);
-  for (let i = 0; i < h; i++) {
-    for (let j = 0; j < w; j++) {
-      if (Set.add(`${i}-${j}`)) {
-        grid[i][j] = color;
-      } else if (!grid[i][j]) {
-        grid[i][j] = init;
-      }
-    }
-  }
-  return grid;
+// var colorBorder = function (grid, r0, c0, color) {
+//   const h = grid.length;
+//   const w = grid[0].length;
+//   if (grid[r0][c0] === color) return grid;
+//   const init = grid[r0][c0];
+//   const points = new Set();
+//   const dfs = (i, j) => {
+//     if (i < 0 || i >= h) return 0;
+//     if (j < 0 || j >= w) return 0;
+//     if (grid[i][j] === 0) return 1;
+//     if (grid[i][j] !== init) return 0;
+//     grid[i][j] = 0;
+//     const count = dfs(i, j + 1) + dfs(i, j - 1) + dfs(i + 1, j) + dfs(i - 1, j);
+//     if (count < 4) {
+//       points.add(`${i}-${j}`);
+//     }
+//     return 1;
+//   };
+//   dfs(r0, c0);
+//   for (let i = 0; i < h; i++) {
+//     for (let j = 0; j < w; j++) {
+//       if (Set.add(`${i}-${j}`)) {
+//         grid[i][j] = color;
+//       } else if (!grid[i][j]) {
+//         grid[i][j] = init;
+//       }
+//     }
+//   }
+//   return grid;
+// };
+let executeCount = 0;
+const fn = (nums) => {
+  executeCount++;
+  return nums.map((x) => x * 2);
 };
+
+const batcher = (f) => {
+  let nums = [];
+  const p = Promise.resolve().then(() => f(nums));
+
+  return (arr) => {
+    let s = nums.length;
+    nums = nums.concat(arr);
+    let e = nums.length;
+    return p.then((r) => r.slice(s, e));
+  };
+};
+
+const batchedFn = batcher(fn);
+
+const main = async () => {
+  const [r1, r2, r3] = await Promise.all([
+    batchedFn([1, 2, 3]),
+    batchedFn([4, 5]),
+    batchedFn([7, 8, 9]),
+  ]);
+
+  //满足以下 test case
+  console.log(r1, r2, r3);
+  console.log(executeCount);
+};
+main();
