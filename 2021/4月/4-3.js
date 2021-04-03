@@ -67,23 +67,51 @@
 // };
 // const a = ["a", "b", "ba", "bca", "bda", "bdca"];
 // console.log(longestStrChain(a));
-var lastStoneWeightII = function (stones) {
-  //   stones.sort((a, b) => a - b);
-  const l = stones.length;
-  const sum = stones.reduce((a, b) => a + b, 0);
-  const max = ~~(sum / 2);
-  const dp = new Array(max + 1).fill(0);
+// var lastStoneWeightII = function (stones) {
+//   //   stones.sort((a, b) => a - b);
+//   const l = stones.length;
+//   const sum = stones.reduce((a, b) => a + b, 0);
+//   const max = ~~(sum / 2);
+//   const dp = new Array(max + 1).fill(0);
+//   for (let i = 1; i <= l; i++) {
+//     for (let j = max; j >= 0; j--) {
+//       if (stones[i - 1] > j) {
+//         continue;
+//       } else {
+//         dp[j] = Math.max(dp[j], stones[i - 1] + dp[j - stones[i - 1]]);
+//       }
+//     }
+//   }
+//   return sum - 2 * dp[max];
+// };
+// const a = [6, 2, 2, 6, 5, 7, 7];
+// // const a = [2, 7, 4, 1, 8, 1];
+// console.log(lastStoneWeightII(a));
+// i-1 ->  i
+// i-1 //
+// i-k   //1-k
+var maxSumAfterPartitioning = function (arr, k) {
+  const l = arr.length;
+  const dp = new Array(l + 1).fill(0);
+  // [1,2,3,  4,5] l  - j
+  // ....i个元素   dp[i - j]  + j*max      j= 1/2/3/k
   for (let i = 1; i <= l; i++) {
-    for (let j = max; j >= 0; j--) {
-      if (stones[i - 1] > j) {
-        continue;
-      } else {
-        dp[j] = Math.max(dp[j], stones[i - 1] + dp[j - stones[i - 1]]);
-      }
+    let max = 0;
+    for (let j = 1; j <= k && i - j >= 0; j++) {
+      max = Math.max(max, arr[i - j]);
+      dp[i] = Math.max(dp[i], dp[i - j] + max * j);
     }
   }
-  return sum - 2 * dp[max];
 };
-const a = [6, 2, 2, 6, 5, 7, 7];
-// const a = [2, 7, 4, 1, 8, 1];
-console.log(lastStoneWeightII(a));
+// if (checkUser() == true) {
+//   console.log("账号OK");
+//   if (checkPassword() == true) {
+//     console.log("密码OK");
+//     return 1;
+//   } else {
+//     console.log("账号error");
+//     return 2;
+//   }
+// } else {
+//   console.log("账号error");
+// }
