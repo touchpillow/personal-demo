@@ -52,23 +52,23 @@
 // };
 // const nums = [13, 10, 35, 24, 76];
 // console.log(countNicePairs(nums));
-var maxHappyGroups = function (batchSize, groups) {
-  const dp = new Array(batchSize).fill(0);
-  for (const v of groups) {
-    dp[v % batchSize]++;
-  }
-  let c = dp[0];
-  dp[0] = 0;
-  for (let i = 1; i <= batchSize / 2; i++) {
-    if (i === batchSize / 2) {
-      const v = ~~(dp[i] / 2);
-      c += v;
-      dp[i] -= 2 * v;
-    } else {
-      const v = Math.min(dp[i], dp[batchSize - i]);
-      c += v;
-      dp[i] -= v;
-      dp[batchSize - i] -= v;
-    }
-  }
-};
+// var maxHappyGroups = function (batchSize, groups) {
+//   const dp = new Array(batchSize).fill(0);
+//   for (const v of groups) {
+//     dp[v % batchSize]++;
+//   }
+//   let c = dp[0];
+//   dp[0] = 0;
+//   for (let i = 1; i <= batchSize / 2; i++) {
+//     if (i === batchSize / 2) {
+//       const v = ~~(dp[i] / 2);
+//       c += v;
+//       dp[i] -= 2 * v;
+//     } else {
+//       const v = Math.min(dp[i], dp[batchSize - i]);
+//       c += v;
+//       dp[i] -= v;
+//       dp[batchSize - i] -= v;
+//     }
+//   }
+// };
