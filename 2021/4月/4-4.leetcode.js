@@ -107,10 +107,12 @@ var countDifferentSubsequenceGCDs = function (a) {
       if (state[j]) {
         if (now == -1) now = j / i;
         else now = gcd(now, j / i);
-        if (now == 1) break;
+        if (now == 1) {
+          ans++;
+          break;
+        }
       }
     }
-    if (now == 1) ans++;
   }
   return ans;
 };
