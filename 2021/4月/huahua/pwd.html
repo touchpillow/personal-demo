@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+  <meta charset="utf-8" />
+
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <title>lalalala</title>
+  </head>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    #keyWordBox {
+      position: relative;
+      width: 200px;
+      height: 18px;
+      line-height: 18px;
+      top: 200px;
+      left: 42%;
+    }
+
+    #inputKeyWord {
+      width: 100%;
+      border: none;
+    }
+
+    #inputKeyWord:focus {
+      outline: none;
+    }
+
+    #inputKeyWord:focus + #showKeyWord:after {
+      animation: mymove 1.2s infinite;
+    }
+
+    @keyframes mymove {
+      0% {
+        opacity: 0;
+      }
+
+      25% {
+        opacity: 0;
+      }
+
+      75% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    #showKeyWord {
+      width: 98%;
+      position: absolute;
+      left: 2px;
+      top: 50%;
+      transform: translate(0, -50%);
+      pointer-events: none;
+      background: #fff;
+      border: 1px solid #169bd5;
+      padding: 5px 10px;
+      border-radius: 3px !important;
+    }
+
+    #showKeyWord:after {
+      content: "";
+      display: inline-block;
+      height: 18px;
+      position: relative;
+      border-right: solid 2px #666;
+      top: 4px;
+      left: 0px;
+      opacity: 0;
+    }
+  </style>
+
+  <body>
+    <div id="keyWordBox">
+      <input
+        type="password"
+        id="inputKeyWord"
+        placeholder="搜索信息识别码，生日"
+      />
+      <div id="showKeyWord" contenteditable="true"></div>
+    </div>
+    <script>
+      const keyword = document.getElementById("showKeyWord");
+      document
+        .getElementById("inputKeyWord")
+        .addEventListener("keyup", function (e) {
+          obj.txt = e.target.value;
+        });
+    </script>
+  </body>
+</html>
