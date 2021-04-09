@@ -201,25 +201,25 @@ var reconstructQueue = function (people) {
  * 1338. 数组大小减半
  * @param {number[]} arr
  * @return {number}
- */
-var minSetSize = function (arr) {
-  let len = arr.length,
-    map = new Map();
+//  */
+// var minSetSize = function (arr) {
+//   let len = arr.length,
+//     map = new Map();
 
-  // 查找相同的数字出现的次数
-  for (let i = 0; i < len; i++) {
-    map.set(arr[i], (map.get(arr[i]) ?? 0) + 1);
-  }
-  // 获取次数列表，并进行降序排序
-  let numArr = Array.from(map.values()).sort((a, b) => b - a),
-    min = 0,
-    curLen = 0;
-  // console.log(numArr)
-  // 累加出现的次数大于一半时就break
-  for (let i = 0; i < numArr.length; i++) {
-    curLen += numArr[i];
-    min++;
-    if (curLen >= len / 2) break;
-  }
-  return min;
-};
+//   // 查找相同的数字出现的次数
+//   for (let i = 0; i < len; i++) {
+//     map.set(arr[i], (map.get(arr[i]) ?? 0) + 1);
+//   }
+//   // 获取次数列表，并进行降序排序
+//   let numArr = Array.from(map.values()).sort((a, b) => b - a),
+//     min = 0,
+//     curLen = 0;
+//   // console.log(numArr)
+//   // 累加出现的次数大于一半时就break
+//   for (let i = 0; i < numArr.length; i++) {
+//     curLen += numArr[i];
+//     min++;
+//     if (curLen >= len / 2) break;
+//   }
+//   return min;
+// };
