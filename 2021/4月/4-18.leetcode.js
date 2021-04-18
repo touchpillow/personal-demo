@@ -68,24 +68,15 @@ const tasks = [
 ];
 console.log(getOrder(tasks));
 var getXORSum = function (arr1, arr2) {
-  const l1 = arr1.length;
-  const l2 = arr2.length;
-  let v1 = 0;
-  for (let i = 0; i < l1 - 1; i++) {
-    for (let j = 0; j < l1; j++) {
-      v1 = v1 ^ arr1[i] ^ arr[j];
-    }
+  let sum2 = 0;
+  let ret = 0;
+  for (const n of arr2) {
+    sum2 ^= n;
   }
-  const v2 = arr2.reduce((pre, item) => pre ^ item, 0);
-  if (l1 % 2 && l2 % 2) {
-    return v1 ^ v2;
-  } else if (l1 % 2) {
-    return v2;
-  } else if (l2 % 2) {
-    return v1;
-  } else {
-    return 0;
+  for (const n of arr1) {
+    ret ^= n & sum2;
   }
+  return ret;
 };
 const arr1 = [1, 2, 3],
   arr2 = [6, 5];
