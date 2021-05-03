@@ -13,32 +13,26 @@
 //   target = 1,
 //   start = 0;
 // console.log(getMinDistance(nums, target, start));
-// var splitString = function (s, pre) {
-//   const l = s.length;
-//   const dp = new Array(l).fill("").map(() => new Array(l).fill(""));
-//   for (let i = 0; i < l; i++) {
-//     for (let j = i; j < l; j++) {
-//       dp[i][j] = Number(s.slice(i, j + 1));
-//     }
-//   }
-//   let flag = false;
-//   const dfs = (index, pre = []) => {
-//     if (flag) return;
-//     if (index < 0 && pre.length > 1) {
-//       flag = true;
-//       return;
-//     }
-//     for (let i = index; i >= 0; i--) {
-//       const head = dp[i][index];
-//       if (pre.length && head !== pre[0] + 1) continue;
-//       const target = pre.slice();
-//       target.unshift(dp[i][index]);
-//       dfs(i - 1, target);
-//     }
-//   };
-//   dfs(l - 1);
-//   return flag;
-// };
+var splitString = function (s) {
+  const l = s.length;
+  let flag = false;
+  const dfs = (index, pre = []) => {
+    if (flag) return;
+    if (index < 0 && pre.length > 1) {
+      flag = true;
+      return;
+    }
+    for (let i = index; i >= 0; i--) {
+      const head = Number(s.slice(i, index + 1));
+      if (pre.length && head !== pre[0] + 1) continue;
+      const target = pre.slice();
+      target.unshift(Number(s.slice(i, index + 1)));
+      dfs(i - 1, target);
+    }
+  };
+  dfs(l - 1);
+  return flag;
+};
 // const s = "10009998";
 // console.log(splitString(s));
 function insert(arr, n) {
