@@ -61,32 +61,76 @@ const splitString = function (s) {
 };
 
 // F
+// var splitString = function (s) {
+//   const l = s.length;
+//   let flag = false;
+//   //之前分割到的最后下标
+//   const dfs = (index, pre = []) => {
+//     if (flag) return;
+//     if (index < 0 && pre.length > 1) {
+//       flag = true;
+//       return;
+//     }
+//     for (let i = index; i >= 0; i--) {
+//       const head = Number(s.slice(i, index + 1));
+//       if (pre.length && head !== pre[0] + 1) continue;
+//       const target = pre.slice();
+//       target.unshift(Number(s.slice(i, index + 1)));
+//       dfs(i - 1, target);
+//     }
+//   };
+//   dfs(l - 1);
+//   return flag;
+// };
+
+// var splitString = function (s) {
+//   const l = s.length;
+//   let flag = false;
+//   //之前分割到的最后下标
+//   const dfs = (index, pre, c = 0) => {
+//     if (flag) return;
+//     if (index < 0 && c >= 2) {
+//       flag = true;
+//       return;
+//     }
+//     for (let i = index; i >= 0; i--) {
+//       const head = Number(s.slice(i, index + 1));
+//       if (pre !== undefined && head !== pre + 1) continue;
+//       dfs(i - 1, head, c + 1);
+//     }
+//   };
+//   dfs(l - 1);
+//   return flag;
+// };
 var splitString = function (s) {
   const l = s.length;
   let flag = false;
   //之前分割到的最后下标
-  const dfs = (index, pre = []) => {
+  const dfs = (index, pre, c = 0) => {
     if (flag) return;
-    if (index < 0 && pre.length > 1) {
+    if (index >= l && c >= 2) {
       flag = true;
       return;
     }
-    for (let i = index; i >= 0; i--) {
-      const head = Number(s.slice(i, index + 1));
-      if (pre.length && head !== pre[0] + 1) continue;
-      const target = pre.slice();
-      target.unshift(Number(s.slice(i, index + 1)));
-      dfs(i - 1, target);
+    for (let i = index; i < l; i++) {
+      const head = Number(s.slice(index, i + 1));
+      if (pre !== undefined && head !== pre - 1) continue;
+      dfs(i + 1, head, c + 1);
     }
   };
-  dfs(l - 1);
+  dfs(0);
   return flag;
 };
-
+console.log(splitString("050043"));
+// 50004948;
 /**
  * 5749. 邻位交换的最小次数
  * @param {string} num
  * @param {number} k
  * @return {number}
  */
+//某个数字的下一个更大排列
+// 是倒序遍历，找到第一个升序的下标处i
+//和右侧接近且大于它的值交换
+// 5489355  1423  2 143  A33
 var getMinSwaps = function (num, k) {};
