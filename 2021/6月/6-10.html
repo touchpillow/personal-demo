@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .a {
+      height: 300px;
+      overflow-y: auto;
+      border: 1px solid #000;
+      /* width: 100%; */
+    }
+    .b {
+      height: 500px;
+      overflow-y: auto;
+    }
+
+    .a::-webkit-scrollbar-thumb {
+      background: #b46868;
+      border-radius: 10px;
+      transform: scale(50%);
+    }
+    .a::-webkit-scrollbar-button {
+      background: #7c2929;
+    }
+    ::-webkit-scrollbar {
+      /* transform: scaleY(50%); */
+      width: 30px;
+    }
+    .c {
+      height: 800px;
+    }
+  </style>
+  <body>
+    <div class="a">
+      <div class="b">
+        <!-- <div class="c"></div> -->
+      </div>
+    </div>
+  </body>
+</html>

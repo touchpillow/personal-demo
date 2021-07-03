@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <button id="a">点击</button>
+    </div>
+    <script>
+      const throttle = (fun, delay = 200) => {
+        let pre;
+        return function (...arg) {
+          const that = this;
+          const cur = new Date().getTime();
+
+          if (!pre || (pre && cur - pre >= delay)) {
+            pre = cur;
+            fun.apply(that, arg);
+          }
+        };
+      };
+      const a = function () {
+        console.log(11);
+      };
+      const wrap = throttle(a, 1000);
+      const btn = document.querySelector("#a");
+      debugger;
+      console.log(btn);
+      btn.addEventListener("click", wrap, false);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        border: 1px solid #03a9f3;
+        --borderColor: #03a9f3;
+      }
+      div::before,
+      div::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        transition: all 0.5s;
+      }
+
+      div::before {
+        top: -5px;
+        left: -5px;
+        border-top: 1px solid var(--borderColor);
+        border-left: 1px solid var(--borderColor);
+      }
+
+      div::after {
+        right: -5px;
+        bottom: -5px;
+        border-bottom: 1px solid var(--borderColor);
+        border-right: 1px solid var(--borderColor);
+      }
+
+      div:hover::before,
+      div:hover::after {
+        width: calc(100% + 9px);
+        height: calc(100% + 9px);
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>
