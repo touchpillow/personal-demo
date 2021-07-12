@@ -4,7 +4,6 @@ var pathInZigZagTree = function (label) {
   while (level > 1) {
     level--;
     label = ~~(label / 2);
-
     label = Math.pow(2, level - 1) + Math.pow(2, level) - label - 1;
     stack.unshift(label);
   }

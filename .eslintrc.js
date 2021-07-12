@@ -9,7 +9,12 @@ module.exports = {
     browser: true,
   },
   // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-  extends: "standard",
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+  ],
   // required to lint *.vue files
   plugins: ["html"],
   // add your custom rules here
@@ -42,5 +47,6 @@ module.exports = {
     "space-before-function-paren": 0,
     "one-var": 0,
     "no-new": 0,
+    indent: 0,
   },
 };
