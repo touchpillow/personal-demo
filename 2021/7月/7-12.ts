@@ -11,4 +11,5 @@ type MyPartial<T> = {
 const b: MyPartial<A> = {
     a: 1,
 }
+
 console.log(a)

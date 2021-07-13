@@ -9,4 +9,4 @@ var pathInZigZagTree = function (label) {
   }
   return stack;
 };
-console.log(pathInZigZagTree(26));
+// console.log(pathInZigZagTree(26));
