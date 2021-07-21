@@ -77,10 +77,48 @@
 //   }
 //   return sum;
 // };
-var canBeTypedWords = function (text, brokenLetters) {
-  const words = text.split(" ");
-  brokenLetters = [...brokenLetters];
-  return words.filter((item) => {
-    return brokenLetters.every((s) => !item.includes(s));
-  }).length;
+// var canBeTypedWords = function (text, brokenLetters) {
+//   const words = text.split(" ");
+//   brokenLetters = [...brokenLetters];
+//   return words.filter((item) => {
+//     return brokenLetters.every((s) => !item.includes(s));
+//   }).length;
+// };
+const arr = ["ac", "bc", "ed", "sf", "hi", "ae", "ab"];
+const group = (arr) => {
+  const stringList = new Array(26).fill(0).map((item, index) => index);
+  const findNumber = (v) => {
+    while (stringList[v] !== v) {
+      v = stringList[v];
+    }
+    return v;
+  };
+  arr.forEach((item) => {
+    const t = [].find.call(item, (s) => {
+      const code = s.charCodeAt() - 97;
+      return stringList[code] !== code;
+    });
+    const target = t || item[0];
+    const targetIndex = findNumber(stringList[target.charCodeAt() - 97]);
+    for (const s of item) {
+      const code = s.charCodeAt() - 97;
+      const last = findNumber(code);
+      stringList[last] = targetIndex;
+    }
+  });
+  console.log(stringList);
+  const map = new Map();
+  for (const item of arr) {
+    for (const s of item) {
+      const code = s.charCodeAt() - 97;
+      const target = findNumber(code);
+      if (!map.has(target)) {
+        map.set(target, new Set(s));
+      } else {
+        map.get(target).add(s);
+      }
+    }
+  }
+  return [...map.values()].map((item) => [...item].join(""));
 };
+console.log(group(arr));
