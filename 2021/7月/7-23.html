@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const a = Promise.reject(123);
+      const b = Promise.reject(444);
+      Promise.any([a, b]).catch(function (a) {
+        console.log(a.message);
+        console.log(a.name);
+        console.log(a.errors);
+      });
+      //   var resolved = Promise.resolve(42);
+      //   var rejected = Promise.reject(-1);
+      //   var alsoRejected = Promise.reject(Infinity);
+
+      //   Promise.any([resolved, rejected, alsoRejected]).then(function (result) {
+      //     console.log(result); // 42
+      //   });
+
+      //   Promise.any([rejected, alsoRejected]).catch(function (results, a, b) {
+      //     console.log(results); // [-1, Infinity]
+      //     console.log(a, b); // [-1, Infinity]
+      //   });
+    </script>
+  </body>
+</html>
