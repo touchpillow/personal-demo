@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="a">输出</button>
+    <button id="b">加一</button>
+    <script>
+      let c = 0;
+      const a = document.querySelector("#a");
+      const b = document.querySelector("#b");
+      a.addEventListener("click", () => {
+        setTimeout(() => {
+          console.log(c);
+        }, 3000);
+      });
+      b.addEventListener("click", () => {
+        c++;
+      });
+    </script>
+  </body>
+</html>

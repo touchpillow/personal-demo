@@ -38,4 +38,9 @@ var maxRepOpt1 = function (text) {
   return max;
 };
 const text = "aaabbaaa";
-console.log(maxRepOpt1(text));
+// console.log(maxRepOpt1(text));
+let a = 1;
+setTimeout(() => {
+  console.log(a);
+});
+a++;
