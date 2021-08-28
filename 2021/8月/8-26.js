@@ -56,3 +56,12 @@ const splitList = (arr) => {
   }
   return res;
 };
+const splitList = (arr, n = 3) => {
+  return arr.reduce(
+    (res, item, index) => {
+      res[index % n].push(item);
+      return res;
+    },
+    new Array(n).fill("").map(() => [])
+  );
+};
