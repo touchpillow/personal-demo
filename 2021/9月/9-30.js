@@ -15,21 +15,22 @@ var findTheLongestSubstring = function (s) {
     o: 3,
     u: 4,
   };
-  const char = ['a', 'e', 'i', 'o', 'u'];
+  const char = ["a", "e", "i", "o", "u"];
   const stack = [0, 0, 0, 0, 0];
-  const indexMap = new Array(32).fill(-2);
-  indexMap[0] = -1;
+  const indexMap = new Map();
+  indexMap.set("00000", -1);
   for (let i = 0; i < s.length; i++) {
     if (char.includes(s[i])) {
       stack[map[s[i]]] = (stack[map[s[i]]] + 1) % 2;
     }
-    const current = parseInt(stack.join(''), 2);
-    if (indexMap[current] === -2) {
-      indexMap[current] = i;
+    const current = stack.join("");
+    if (!indexMap.has(current)) {
+      indexMap.set(current, i);
+    } else {
+      max = Math.max(max, i - indexMap.get(current));
     }
-    max = Math.max(max, i - indexMap[current]);
   }
   return max;
 };
-const s = 'leetcodeisgreat';
+const s = "leetcodeisgreat";
 console.log(findTheLongestSubstring(s));
