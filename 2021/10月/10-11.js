@@ -27,4 +27,4 @@ var numOfMinutes = function (n, headID, manager, informTime) {
     dp[i] = getTime(i);
   }
   return Math.max(...dp);
-};
+
