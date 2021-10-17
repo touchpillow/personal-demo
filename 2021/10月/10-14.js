@@ -11,7 +11,7 @@ var balanceBST = function (root) {
   const dfs = (root) => {
     if (!root) return;
     dfs(root.left);
-    node.push(root.val);
+    node.push(root);
     dfs(root.right);
   };
   dfs(root);
@@ -19,7 +19,9 @@ var balanceBST = function (root) {
   const getTree = (left, right) => {
     if (left > right) return null;
     if (left === right) {
-      return new TreeNode(node[left]);
+      node[left] = null;
+      node[right] = null;
+      return node[left];
     } else {
       const mid = ~~((left + right) / 2);
       const root = new TreeNode(node[mid]);
