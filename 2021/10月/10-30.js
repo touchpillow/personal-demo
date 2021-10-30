@@ -1,0 +1,1 @@
+var isSelfCrossing = function (distance) {};
