@@ -16,8 +16,3 @@ var pseudoPalindromicPaths = function (root) {
   return c;
 };
 [2, 1, 1, 1, 3, null, null, null, null, null, 1];
-211311
-   2
- 1    1
-1  3    
-     1 
