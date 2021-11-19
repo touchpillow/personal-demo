@@ -33,3 +33,8 @@ SubrectangleQueries.prototype.getValue = function (row, col) {
   if (!v) return this.rectangle[row][col];
   return v[4];
 };
+for (var i = 0; i < 5; i++) {
+  setTimeout(() => {
+    console.log(i);
+  }, 1000);
+}
